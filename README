@@ -18,13 +18,13 @@ autoall:
     runs one after the other the bestof gnu automake autoconf suite in
     the proper order (or at least proper enough for the author's projects)
 
-clean4cvs:
+repozclean:
     tries to clean most files created by the previous scripts in order to
-    have a cleaned source tree ready for cvs comparisons, updates and check-ins.
+    have a cleaned source tree ready for repository comparisons, updates and check-ins.
 
 cvsstat:
     recurse into current source tree and check via cvs for needed updates or local
-    changes. It should also detect missing files/directories.
+    changes. It should also detect missing files/directories. OBSOLETE.
 
 maketags:
     recurses into current source tree and in a set of hardcoded headers' trees so

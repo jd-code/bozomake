@@ -37,7 +37,7 @@
 ## pkginclude_HEADERS =	include/matcalc/matcalc.h
 bin_SCRIPTS =		\
     autoall		\
-    clean4cvs		\
+    repozclean		\
     bozoconf		\
     maketags		\
     mvtobackup		\
