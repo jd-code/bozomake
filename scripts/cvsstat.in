@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: cvsstat.in,v 1.2 2004/05/05 20:41:12 jd Exp $
+# $Id$
 #
 # Bozomake - (c) 2001-2002-2003-2004 Jean-Daniel Pauget
 
@@ -9,7 +9,7 @@
 
 if [ "${1}" = "--version" ]
 then
-    echo "Bozomake's cvsstat version @VERSION@ - "'$Id: cvsstat.in,v 1.2 2004/05/05 20:41:12 jd Exp $'
+    echo "Bozomake's cvsstat version @VERSION@ - "'$Id$'
     echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
     echo
     exit 0

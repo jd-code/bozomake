@@ -1,5 +1,5 @@
 /*
- *  $Id: rev.c,v 1.1 2004/04/27 12:36:28 jd Exp $
+ *  $Id$
  * 
  *  rev perfoms a left to righ conversion of a text file.
  *  it is intended to supply the 'rev' functionnality when it is missing,

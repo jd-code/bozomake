@@ -1,12 +1,12 @@
 #!/bin/sh
 #
-# $Id: vimall.in,v 1.1 2004/04/21 22:27:32 jd Exp $
+# $Id$
 #
 # Bozomake - (c) 2001-2002-2003-2004 Jean-Daniel Pauget
 
 if [ "${1}" = "--version" ]
 then
-    echo "Bozomake's vimall version @VERSION@ - "'$Id: vimall.in,v 1.1 2004/04/21 22:27:32 jd Exp $'
+    echo "Bozomake's vimall version @VERSION@ - "'$Id$'
     echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
     echo
     exit 0
@@ -19,7 +19,7 @@ if [ "${1}" ]
 then
     if [ "${1}" = "-v" ]
     then
-	echo "Bozomake's vimall version @VERSION@ - "'$Id: vimall.in,v 1.1 2004/04/21 22:27:32 jd Exp $'
+	echo "Bozomake's vimall version @VERSION@ - "'$Id$'
 	echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
 	exit 0
     fi

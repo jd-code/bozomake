@@ -1,5 +1,5 @@
 ## 
-## $Id: Makefile.am,v 1.1 2004/03/27 23:49:52 jd Exp $
+## $Id$
 ## Matcalc Copyright (C) 2002,2003 Cristelle Barillon & Jean-Daniel Pauget
 ##
 ## matcalc@disjunkt.com  -  http://matcalc.disjunkt.com/
