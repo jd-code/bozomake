@@ -103,10 +103,3 @@ int main (int nb, char ** cmde)
     return 0;
 }
 
-/*
- * $Log: rev.c,v $
- * Revision 1.1  2004/04/27 12:36:28  jd
- * a whole set of upgrades in regard with msys/mingw
- *
- *
- */

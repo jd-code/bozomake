@@ -43,18 +43,3 @@ vimtestw32: all
 ## DISTCLEANFILES = ./src/Caroube.exe ./src/stderr.txt ./src/stdout.txt
 
 
-## 
-##  $Log: Makefile.am,v $
-##  Revision 1.2  2004/04/27 12:36:28  jd
-##  a whole set of upgrades in regard with msys/mingw
-##
-##  Revision 1.1.1.1  2004/03/27 23:49:52  jd
-##  imported sources
-##
-##  Revision 1.1.1.1  2004/02/28 15:28:24  jd
-##  Imported sources
-##
-##
-## 
-
-

@@ -30,12 +30,3 @@ bin_PROGRAMS = rev
 rev_SOURCES = rev.c
 
 
-
-## 
-##  $Log: Makefile.am,v $
-##  Revision 1.1  2004/04/27 12:36:28  jd
-##  a whole set of upgrades in regard with msys/mingw
-##
-##
-##
-
