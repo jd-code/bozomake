@@ -38,7 +38,7 @@
 bin_SCRIPTS =		\
     autoall		\
     clean4cvs		\
-    configure		\
+    bozoconf		\
     maketags		\
     mvtobackup		\
     cptobackup		\
