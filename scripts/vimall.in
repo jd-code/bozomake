@@ -68,11 +68,18 @@ then
     maketags
 fi
 
+if [ -e "${HOME}/.vimall.rc" ]
+then
+    VIMALLRC="-s ${HOME}/.vimall.rc"
+else
+    VIMALLRC=""
+fi
+
 if [ -e .vim.prepend ]
 then
-    vi -s .vim.prepend ${SORTLIST}
+    vi $VIMALLRC -c ":source .vim.prepend" ${SORTLIST}
 else
-    vi ${SORTLIST}
+    vi $VIMALLRC ${SORTLIST}
 fi
 
 if [ "${VA_TYPESVIM}" = "OUI" ]
