@@ -6,12 +6,12 @@ Most of them are still badly finished, with hardcoded path and
 other ugglynesses the same kind.
 
 
-configure:
+bozoconf:
     tests if any "./configure" script lays in the current dir and try to
     run it. If there is such script, try to use "autoall" (see below) for
     creating one and running it.
 
-    "configure --version" cleverly dumps the version and revision of most tools
+    "bozoconf --version" cleverly dumps the version and revision of most tools
     involved in the autobuild process, useful for bug tracking.
     
 autoall:

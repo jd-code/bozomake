@@ -13,7 +13,7 @@
 
 if [ "${1}" = "--version" ]
 then
-    echo "Bozomake's configure version @VERSION@ - "'$Id$'
+    echo "Bozomake's bozoconf version @VERSION@ - "'$Id$'
     echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
     echo
     for TOBEDONE in		\
@@ -54,8 +54,20 @@ trackchange()
 
 trackchange
 
+if [ ! "${BOZOCONFMAKE}" ]
+then
+    BOZOCONFMAKE="make"
+fi
+
+if [ ! "${BOZOCONFTARGET}" ]
+then
+    BOZOCONFTARGET=vimtest
+fi
+
 (
-    echo ':set makeprg=make'
+    echo ":set makeprg=${BOZOCONFMAKE}"
+    echo ":let \$reportcompile=\"bozoconf-${BOZOMAKEEXT}\""
+    echo ":map <F12> :wa<CR>:make ${BOZOCONFTARGET}<CR>"
 ) > .vim.prepend
 
 if [ -e ./configure ]
@@ -63,22 +75,28 @@ then
     if [ -x ./configure ]
     then
 	echo "running ./configure"
-	./configure $* && CONFOK=yes || CONFOK=NO
+	if [ "${BOZOCONFCACHE}" ]
+	then
+	    sh ./configure --cache-file="${BOZOCONFCACHE}" "$@" && CONFOK=yes || CONFOK=NO
+	    rm -f "${BOZOCONFCACHE}"
+	else
+	    ./configure "$@" && CONFOK=yes || CONFOK=NO
+	fi
 	trackchange
 	echo "running maketags"
 	maketags
 	trackchange
 	if [ "${CONFOK}" != "yes" ]
 	then
-	    echo "there were errors at ./configure $*"
+	    echo "there were errors at ./configure $@"
 	    exit 1
 	fi
     else
-	echo "there is a ./configure file, but it doesn't have execution bits ?"
+	echo "there is a './configure' file, but it doesn't have execution bits ?"
 	exit 1
     fi
 else
-    echo -n "could not find ./configure..."
+    echo -n "could not find './configure' ..."
     if [ -e ./configure.in ]
     then
 	echo "...trying to build one with autoall :"
@@ -87,20 +105,26 @@ else
 	    if [ -x ./configure ]
 	    then
 		echo
-		echo "running the ./configure created with autoall"
+		echo "running the './configure' created with autoall"
 		echo
-		./configure $* && CONFOK=yes || CONFOK=NO
+		if [ "${BOZOCONFCACHE}" ]
+		then
+		    sh ./configure --cache-file="${BOZOCONFCACHE}" "$@" && CONFOK=yes || CONFOK=NO
+		    rm -f "${BOZOCONFCACHE}"
+		else
+		    ./configure "$@" && CONFOK=yes || CONFOK=NO
+		fi
 		trackchange
 		echo "running maketags"
 		maketags
 		trackchange
 		if [ "${CONFOK}" != "yes" ]
 		then
-		    echo "there were errors at ./configure $*"
+		    echo "there were errors at ./configure $@"
 		    exit 1
 		fi
 	    else
-		echo "after autoall, there is still no ./configure available ?"
+		echo "after autoall, there is still no './configure' available ?"
 		exit 1
 	    fi
 	else
@@ -108,7 +132,7 @@ else
 	    exit 1
 	fi
     else
-	echo " ...there are no ./configure.in file..."
+	echo " ...there are no './configure.in' file..."
 	echo "are you sure to be in a source tree ?"
 	exit 1
     fi

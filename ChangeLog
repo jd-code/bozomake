@@ -1,3 +1,6 @@
+2005-01-07: jd         : rev-1-1-0
+                         consistency cleanup in regard with cross-compilation
+			 badly named "configure" renamed in "bozoconf"
 2004-05-04: jd         : cvs tag rev-0-9-13 .
                          some more tunings in regard with new autotools
                          better global consistency

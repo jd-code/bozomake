@@ -45,13 +45,14 @@ fi
 		./tags			maketags
 		./TAGS			maketags
 		./BROWSE		maketags
-		./cross-config.cache	cross-configure
+		./config*.cache		bozoconf+./configure
 		./config.cache		./configure
 		./config.log		./configure
 		./config.status		./configure
 		./libtool		./configure
-		./.vim.prepend		bozomake_configure
+		./.vim.prepend		bozoconf
 		./.in			autoheader-2.59_______________questionnable_______
+		./confdefs.h		./configure
 end_of_root_removed_FILES
 ) | while read FILE CREATOR
 do
