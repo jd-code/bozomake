@@ -63,16 +63,17 @@ dotheconfiture()
 	OURCONFIGURE="./configure"
     fi
 
-    echo "running ${OURCONFIGURE}"
     if [ "${BOZOCONFCACHE}" ]
     then
-	sh "${OURCONFIGURE}" --cache-file="${BOZOCONFCACHE}" "$@" && CONFOK=yes || CONFOK=NO
+	echo "running " "${OURCONFIGURE}" --cache-file="${BOZOCONFCACHE}" "$@"
+	sh              "${OURCONFIGURE}" --cache-file="${BOZOCONFCACHE}" "$@" && CONFOK=yes || CONFOK=NO
 	if ! [ ${OURBUILDDIR} ]
 	then
 	    rm -f "${BOZOCONFCACHE}"
 	fi
     else
-	"${OURCONFIGURE}" "$@" && CONFOK=yes || CONFOK=NO
+	echo "running " "${OURCONFIGURE}" "$@"
+	sh              "${OURCONFIGURE}" "$@" && CONFOK=yes || CONFOK=NO
     fi
     trackchange
     cd "${OURSOURCDIR}" || exit 1
