@@ -98,6 +98,7 @@ done
 		.deps			configure
 		.libs			libtool_make
 		autom4te.cache		aclocal
+		.xvpics			xv
 end_of_recursed_removed_DIRS
 ) | while read DIRNAME CREATOR
 do
