@@ -43,7 +43,7 @@ then
 	grep typedef tags | cut -f 1
     ) | sort -u |
     (
-	echo -n 'syntax keyword Function... '
+	echo -n 'syntax keyword Function '
 	while read NOM
 	do
 	    echo -n "${NOM} "
