@@ -50,7 +50,17 @@ then
     fi
 else
     echo -n "vimall scanning..."
-    SORTLIST=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')' -printf "%T@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
+    SORTLIST=`find . '('    -type f		    \
+			    -name "*.c"		    \
+			 -o -name "*.h"		    \
+			 -o -name "*.cpp"	    \
+			 -o -name "*.c.in"	    \
+			 -o -name "*.h.in"	    \
+			 -o -name "*.cpp.in"	    \
+		      ')'			    \
+		      '(' -not -path '*/.svn/*'	    \
+			  -not -path '*/CVS/*'	    \
+		      ')' -printf "%T@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
     # LISTE=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
     echo "done."
 fi
