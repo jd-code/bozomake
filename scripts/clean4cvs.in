@@ -1,10 +1,10 @@
 #!/bin/sh
 #
 # is supposed to clean-up the source dir from automake/conf stuffs 
-# before some cvs import
+# before some cvs or subversion import
 #
 # est sensé faire le ménage en regard des fichiers créés par automake/conf
-# avant un import cvs
+# avant un import cvs ou subversion
 #
 # $Id$
 #
@@ -80,7 +80,7 @@ end_of_recursed_removed_FILES
 do
     if [ "${FILE}" ]
     then
-	find . -name "${FILE}" -print | while read FNAME
+	find . -name "${FILE}" -not -path '*/.svn/*' -not -path '*/CVS/*' -print | while read FNAME
 	do
 	    if rm "${FNAME}"
 	    then
@@ -103,7 +103,7 @@ end_of_recursed_removed_DIRS
 do
     if [ "${DIRNAME}" ]
     then
-	find . -type d -name "${DIRNAME}" -print | while read DNAME
+	find . -type d -name "${DIRNAME}" -not -path '*/.svn/*' -not -path '*/CVS/*' -print | while read DNAME
 	do
 	    if rm -rf "${DNAME}"
 	    then
