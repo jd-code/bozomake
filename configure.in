@@ -1,0 +1,145 @@
+dnl 
+dnl $Id: configure.in,v 1.7 2004/05/03 23:08:45 jd Exp $
+dnl Bozomake Copyright (C) 2002 Cristelle Barillon, Jean-Daniel PAUGET
+dnl A whole set of building utilities
+dnl 
+dnl bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
+dnl 
+dnl 
+dnl 
+dnl 
+dnl 
+dnl This file is part of Bozomake.
+dnl 
+dnl Matcalc is free software; you can redistribute it and/or modify
+dnl it under the terms of the GNU General Public License as published by
+dnl the Free Software Foundation; either version 2 of the License, or
+dnl (at your option) any later version.
+dnl 
+dnl Matcalc is distributed in the hope that it will be useful,
+dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+dnl GNU General Public License for more details.
+dnl 
+dnl You should have received a copy of the GNU General Public License
+dnl along with Matcalc; if not, write to the Free Software
+dnl Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+dnl you can also try the web at http://www.gnu.org/
+dnl 
+dnl 
+dnl bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
+
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(scripts/cvsstat.in)
+
+dnl Detect the canonical host and target build environment
+AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
+
+dnl autoheader
+dnl JDJDJDJD though useless in this package,
+dnl this is here for autoheader 2.56 on msys
+AM_CONFIG_HEADER(src/config.h)
+
+dnl Setup for automake
+AM_INIT_AUTOMAKE(bozomake, 0.9.13)
+
+# set the libtool so version numbers
+lt_major=1
+lt_revision=0
+lt_age=0
+
+AC_SUBST(lt_major)
+AC_SUBST(lt_revision)
+AC_SUBST(lt_age)
+
+
+dnl Detect the canonical host and target build environment ---- was here
+
+dnl Check for tools
+
+AC_PROG_CC
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+
+dnl Check for compiler environment
+
+AC_C_CONST
+
+dnl JD's standard minimum CFLAG
+dnl	CFLAGS="$CFLAGS -O2 -Wall"
+dnl	CXXFLAGS="$CFLAGS -O2 -Wall"
+dnl CHANGED for JD's ENterGroup default nasty warnings
+CFLAGS="$CFLAGS -O2 -Wall -Wcast-qual -Wwrite-strings"
+dnl CXXFLAGS="$CXXFLAGS -O2 -Wall -Woverloaded-virtual -Wcast-qual -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wredundant-decls -Winline"
+CXXFLAGS="$CXXFLAGS -O2 -Wall -Woverloaded-virtual -Wcast-qual -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wredundant-decls"
+
+dnl are we compiling for windows -----------------------------------------------------------
+
+dnl first we set the default value
+case "$target" in
+    *-*-mingw32*)
+	defbuildforwin32=yes
+	;;
+    *)
+	defbuildforwin32=no
+	;;
+esac
+
+dnl then we act as eventually required by the configure...
+AC_MSG_CHECKING([whether we build for windows])
+AC_ARG_ENABLE(build-for-win32,
+[  --enable-build-for-win32
+                          enables building for a win32 paths repartition],
+     try_build_for_win32=$enableval, try_build_for_win32="$defbuildforwin32")
+AC_MSG_RESULT($try_build_for_win32)
+
+if test "$try_build_for_win32" = yes; then
+    AC_DEFINE(BUILD_FOR_WIN32, 1, we build for a win32 install paths flavour)
+fi
+
+
+# Finally create all the generated files
+AC_OUTPUT([
+	Makefile
+	src/Makefile
+	scripts/Makefile
+	scripts/autoall
+	scripts/clean4cvs
+	scripts/configure
+	scripts/cptobackup
+	scripts/cvsstat
+	scripts/maketags
+	scripts/mvtobackup
+	scripts/vimall
+])
+
+dnl
+dnl $Log: configure.in,v $
+dnl Revision 1.7  2004/05/03 23:08:45  jd
+dnl *** empty log message ***
+dnl
+dnl Revision 1.6  2004/04/29 21:45:26  jd
+dnl *** empty log message ***
+dnl
+dnl Revision 1.5  2004/04/27 21:46:40  jd
+dnl *** empty log message ***
+dnl
+dnl Revision 1.4  2004/04/27 14:59:49  jd
+dnl tweaking for msys/mingw autoconf-2.56
+dnl
+dnl Revision 1.3  2004/04/27 12:36:28  jd
+dnl a whole set of upgrades in regard with msys/mingw
+dnl
+dnl Revision 1.2  2004/04/21 22:27:31  jd
+dnl moving to 0.9.9 release
+dnl
+dnl Revision 1.1.1.1  2004/03/27 23:49:52  jd
+dnl imported sources
+dnl
+dnl Revision 1.1.1.1  2004/02/28 15:28:24  jd
+dnl Imported sources
+dnl
+dnl
+dnl

@@ -1,0 +1,132 @@
+#!/bin/sh
+#
+# est sensé lancer un "./configure" en bonne et due forme si disponible,
+# sinon, essaie d'utiliser "autoall" pour en générer un avant de le lancer
+#
+# is supposed to trigger some regular "./configure" if available,
+# if not it will try to build one via "autoall" before launching it
+#
+# $Id: configure.in,v 1.4 2004/05/03 23:07:36 jd Exp $
+#
+# Bozomake - (c) 2002-2003-2004 Jean-Daniel Pauget
+# Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
+
+if [ "${1}" = "--version" ]
+then
+    echo "Bozomake's configure version @VERSION@ - "'$Id: configure.in,v 1.4 2004/05/03 23:07:36 jd Exp $'
+    echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
+    echo
+    for TOBEDONE in		\
+	autoall			\
+	clean4cvs		\
+	cptobackup		\
+	cvsstat			\
+	maketags		\
+	mvtobackup		\
+	vimall
+    do
+	echo "...executing : "`which ${TOBEDONE}`" --version"
+	${TOBEDONE} --version
+    done
+    exit 0
+fi
+
+TRACKCHANGE=no
+TRACKAUTOALL=""
+if [ "${1}" = "--track-changes" ]
+then
+    TRACKCHANGE=yes
+    export TRACKTMP="/tmp/configure-track-$$"
+    TRACKAUTOALL="--track-changes=${TRACKTMP}"
+    find . | sort > "${TRACKTMP}-1"
+    shift
+fi
+
+trackchange()
+{   
+    if [ "${TRACKCHANGE}" = "yes" ]
+    then
+	find . | sort > "${TRACKTMP}-2"
+	diff "${TRACKTMP}-1" "${TRACKTMP}-2" | while read LIGNE ; do echo "        ${LIGNE}" ; done
+	find . | sort > "${TRACKTMP}-1"
+    fi
+}
+
+trackchange
+
+(
+    echo ':set makeprg=make'
+) > .vim.prepend
+
+if [ -e ./configure ]
+then
+    if [ -x ./configure ]
+    then
+	echo "running ./configure"
+	./configure $* && CONFOK=yes || CONFOK=NO
+	trackchange
+	echo "running maketags"
+	maketags
+	trackchange
+	if [ "${CONFOK}" != "yes" ]
+	then
+	    echo "there were errors at ./configure $*"
+	    exit 1
+	fi
+    else
+	echo "there is a ./configure file, but it doesn't have execution bits ?"
+	exit 1
+    fi
+else
+    echo -n "could not find ./configure..."
+    if [ -e ./configure.in ]
+    then
+	echo "...trying to build one with autoall :"
+	if autoall "${TRACKAUTOALL}"
+	then
+	    if [ -x ./configure ]
+	    then
+		echo
+		echo "running the ./configure created with autoall"
+		echo
+		./configure $* && CONFOK=yes || CONFOK=NO
+		trackchange
+		echo "running maketags"
+		maketags
+		trackchange
+		if [ "${CONFOK}" != "yes" ]
+		then
+		    echo "there were errors at ./configure $*"
+		    exit 1
+		fi
+	    else
+		echo "after autoall, there is still no ./configure available ?"
+		exit 1
+	    fi
+	else
+	    echo "autoall returned an error"
+	    exit 1
+	fi
+    else
+	echo " ...there are no ./configure.in file..."
+	echo "are you sure to be in a source tree ?"
+	exit 1
+    fi
+fi
+
+# $Log: configure.in,v $
+# Revision 1.4  2004/05/03 23:07:36  jd
+# better error handling after execution of local ./configure
+#
+# Revision 1.3  2004/04/29 22:14:04  jd
+# tuned --track-changes cooperation
+#
+# Revision 1.2  2004/04/29 21:43:23  jd
+# added --track-changes option
+#
+# Revision 1.1  2004/04/21 22:27:31  jd
+# moving to 0.9.9 release
+#
+# Revision 1.1.1.1  2004/03/27 23:49:52  jd
+# imported sources
+#

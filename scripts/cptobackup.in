@@ -1,0 +1,120 @@
+#!/bin/sh
+#
+# this one try to safely copy to backup the list of files
+#
+# $Id: cptobackup.in,v 1.1 2004/04/21 22:27:32 jd Exp $
+#
+# Bozomake - (c) 1999-2002-2003-2004 Jean-Daniel Pauget
+# Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
+
+if [ "${1}" = "--version" ]
+then
+    echo "Bozomake's cptobackup version @VERSION@ - "'$Id: cptobackup.in,v 1.1 2004/04/21 22:27:32 jd Exp $'
+    echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
+    echo
+    exit 0
+fi
+
+TSTAMP=`date +"%Y%m%d"`
+
+construct_backupname() {
+    if [ ! "${1}" ]
+    then
+	echo "construct_backupname needs one arg !!"  1>&2
+	echo "nonono_notaname"
+	return 1
+    fi
+
+    PROP="${NAME}-${TSTAMP}"
+    if [ ! -e "${PROP}" ]
+    then
+	echo "${PROP}"
+	return 0
+    else
+	N=1
+	PROP="${NAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
+	while [ -e "${PROP}" -a "${N}" -lt 20 ]
+	do
+	   N=$[ ${N}+1 ]
+	    PROP="${NAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
+	done
+    fi
+    if [ ! -e "${PROP}" ]
+    then
+	echo "${PROP}"
+        return 0
+    fi
+
+    echo "nonono_notaname"
+    return 1
+}
+
+ERROR=NO
+
+if [ ! "${1}" ]
+then
+    echo "usage : ${0} ... list of files to COPY to stamped backup ..."
+    exit 1
+fi
+
+for NAME in ${*}
+do
+    LASTCHAR=`echo "${NAME}" | rev | cut -b1`
+    if [ "${LASTCHAR}" = "/" ]
+    then
+	NAME=`echo "${NAME}" | rev | cut -b2- | rev`
+    fi
+
+    if [ -e "${NAME}" ]
+    then
+	if [ -f "${NAME}" ] ############## regular file
+	then
+	    PROPNAME=`construct_backupname "${NAME}"`
+	    if [ "nonono_notanameE" = "${PROPNAME}"E ]
+	    then
+		echo "could NOT backup move ${NAME} !!!!!!!" 1>&2
+		ERROR=YES
+	    else
+		echo cp "${NAME}" "${PROPNAME}"
+		cp "${NAME}" "${PROPNAME}"
+	    fi
+	else
+	if [ -d "${NAME}" ] ############## regular directory
+	then
+	    PROPNAME=`construct_backupname "${NAME}"`
+	    if [ "nonono_notanameE" = "${PROPNAME}"E ]
+	    then
+		echo "could NOT backup move ${NAME} !!!!!!!" 1>&2
+		ERROR=YES
+	    else
+		echo cp -a "[dir]" "${NAME}" "[dir]" "${PROPNAME}"
+		cp -a "${NAME}" "${PROPNAME}"
+	    fi
+	else
+	if [ -L "${NAME}" ] ############## regular symbolic-link
+	then
+	    echo "${NAME} is a symlink !!! cannot make a backup copy of it"
+	    ERROR=YES
+	else		    ############# none of the above
+	    echo "${NAME} is not a regular file/dir/symlink !!! skipped"
+	    ERROR=YES
+	fi
+	fi
+	fi
+    else
+	echo "${NAME} doesn't exist... skipped"
+    fi
+done
+
+if [ ${ERROR} = "YES" ]
+then
+    exit 1
+fi
+
+# $Log: cptobackup.in,v $
+# Revision 1.1  2004/04/21 22:27:32  jd
+# moving to 0.9.9 release
+#
+# Revision 1.1.1.1  2004/03/27 23:49:52  jd
+# imported sources
+#

@@ -1,0 +1,89 @@
+#!/bin/sh
+#
+# scans some completely arbitrary list of files in order to build a global+local ctags file
+#
+# $Id: maketags.in,v 1.5 2004/05/07 17:27:26 tek Exp $
+#
+# Bozomake - (c) 2002-2003-2004 Jean-Daniel Pauget
+# Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
+
+LISTE_ADDON="/usr/include/matcalc /usr/include/grapefruit /usr/include/caroube"
+LISTE_ADDON="/usr/local/include/matcalc /usr/local/include/grapefruit /usr/local/include/caroube ${LISTE_ADDON}"
+
+
+if [ "${1}" = "--version" ]
+then
+    echo "Bozomake's maketags version @VERSION@ - "'$Id: maketags.in,v 1.5 2004/05/07 17:27:26 tek Exp $'
+    echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
+    echo
+    exit 0
+fi
+
+echo -n "scanning..."
+LISTEDIR=""
+for DIR in ${LISTE_ADDON}
+do
+    if [ -e "${DIR}" ]
+    then
+	LISTEDIR="${DIR} ${LISTEDIR}"
+    fi
+done
+
+if [ "${BUILD_CTAGS}" ]
+then
+    echo -n " ctags..."
+    ctags --C-types=+p `find . -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc"`
+    ctags --C-types=+p -a `find ${LISTEDIR} ~/bzoums/grapefruit/src ~/bzoums/grapefruit/src`
+
+    echo -n " extracting types..."
+    (
+	(	cat tags | rev | cut -f1 | rev | grep class | rev | cut -d':' -f1 | rev | sort -u ) 2> /dev/null
+	cut -f1,3 tags | grep class | cut -f1 | sort -u
+	cut -f1,3 tags | grep namespace | cut -f1 | sort -u
+	grep typedef tags | cut -f 1
+    ) | sort -u |
+    (
+	echo -n 'syntax keyword Function '
+	while read NOM
+	do
+	    echo -n "${NOM} "
+	done
+	echo
+    ) > types.vim
+fi
+
+if [ "${BUILD_ETAGS}" ]
+then
+    echo -n " etags..."
+    etags --C-types=+p `find . -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc"`
+    etags --C-types=+p -a `find ${LISTEDIR} ~/bzoums/grapefruit/src ~/bzoums/grapefruit/src`
+fi
+
+if [ "${BUILD_EBROWSE}" ]
+then
+    echo -n " ebrowse..."
+    ebrowse `find . -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc"`
+    ebrowse -a `find ${LISTEDIR} -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc"`
+fi
+
+echo " done."
+
+# $Log: maketags.in,v $
+# Revision 1.5  2004/05/07 17:27:26  tek
+# *** empty log message ***
+#
+# Revision 1.4  2004/05/06 19:22:48  tek
+# added ebrowse
+#
+# Revision 1.3  2004/04/29 15:09:55  jd
+# enabled support for etags and ctags
+#
+# Revision 1.2  2004/04/29 13:22:19  jd
+# added etags
+#
+# Revision 1.1  2004/04/21 22:27:32  jd
+# moving to 0.9.9 release
+#
+# Revision 1.1.1.1  2004/03/27 23:49:52  jd
+# imported sources
+#

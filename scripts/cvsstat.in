@@ -1,0 +1,145 @@
+#!/bin/sh
+#
+# $Id: cvsstat.in,v 1.2 2004/05/05 20:41:12 jd Exp $
+#
+# Bozomake - (c) 2001-2002-2003-2004 Jean-Daniel Pauget
+
+# shortcut for getting a clear list of modified, unexistent files in a
+# checked-out then modified cvs-tree
+
+if [ "${1}" = "--version" ]
+then
+    echo "Bozomake's cvsstat version @VERSION@ - "'$Id: cvsstat.in,v 1.2 2004/05/05 20:41:12 jd Exp $'
+    echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
+    echo
+    exit 0
+fi
+
+if [ e"${1}"e = "ee" ]
+then
+    echo "usage: cvsstat dirname"
+else
+    DISGOOD=`(cd "${1}" && echo OUI || echo NON)`
+    if [ "${DISGOOD}" = "NON" ]
+    then
+	echo "cannot cd to ${1} ??? bailing out."
+	exit 1
+    fi
+
+    find ${1} -type d | grep -v CVS | while read NOMDIR
+    do
+	if [ -d "${NOMDIR}/CVS" ]
+	then
+	    # echo ">>>${NOMDIR}<<<<"
+	    LISTFILE=`find "${NOMDIR}" -type f -maxdepth 1 | grep -v CVS `
+	    if [ "${LISTFILE}" ]
+	    then
+		# echo cvs status ${LISTFILE}
+		cvs status ${LISTFILE} |
+		grep '^File: ' | grep -v 'Status: Up-to-date' | cut -b7- |
+		while read LIGNE
+		do
+		    echo "${NOMDIR}/${LIGNE}"
+		done | rev | sort | rev
+	    fi
+	fi
+    done
+
+    find ${1} -type d | grep -v CVS | while read NOM
+    do
+	if [ ! -d "${NOM}"/CVS ]
+	then
+	    echo "directory ${NOM} has not been checked-out from cvs, maybe it needs to be imported ?"
+	fi
+    done
+
+    if [ -f ${1}/CVS/Repository ]
+    then
+	REPOSITORY=`cat ${1}/CVS/Repository`
+	REPOSITORYROOT=`echo -n "${REPOSITORY}" | tr '/' '\n' | while read TRUC ; do  echo -n ../ ; done ; echo -n '..'`
+	REPOSITORYROOT=`cd "${1}/${REPOSITORYROOT}" ; pwd`
+
+	# echo
+	# echo " [${REPOSITORY}] [${REPOSITORYROOT}] "
+	# echo
+	
+	(   cd /tmp
+	    if [ ! -e cvsstat-$$ ]
+	    then
+		mkdir cvsstat-$$
+		cd cvsstat-$$
+		cvs co "${REPOSITORY}" > /dev/null 2> /dev/null
+		cd "${REPOSITORY}"
+		find . -type f | grep -v CVS | sort > /tmp/cvsstat-$$-Flist
+		find . -type d | grep -v CVS | sort > /tmp/cvsstat-$$-Dlist
+		cd
+		rm -rf /tmp/cvsstat-$$
+	    else
+		echo "could not check for new files, you should try cvsstat again ?"
+	    fi
+	)
+
+	if [ -f /tmp/cvsstat-$$-Dlist ]
+	then
+	    : > /tmp/cvsstat-$$-Dlist-new
+	    cat /tmp/cvsstat-$$-Dlist | while read NOM
+	    do
+		if [ ! -d "${1}/${NOM}" ]
+		then
+		    echo "directory ${1}/${NOM} seems new in repository !!"
+		    grep "^${NOM}" /tmp/cvsstat-$$-Flist | while read NOMF
+		    do
+			echo "          ${NOMF}"
+		    done
+
+		    echo "maybe you should try "'"'" ( cd ${REPOSITORYROOT} ; cvs co ${REPOSITORY}/${NOM} ) "'" ?'
+		    echo
+
+		    echo "${NOM}" >> /tmp/cvsstat-$$-Dlist-new
+		fi
+	    done
+	    rm /tmp/cvsstat-$$-Dlist
+	else
+	    echo "check list file /tmp/cvsstat-$$-list wasn't created, could not check for new files."
+	fi
+	if [ -f /tmp/cvsstat-$$-Flist ]
+	then
+	    cat /tmp/cvsstat-$$-Flist | while read NOM
+	    do
+		if [ ! -f "${1}/${NOM}" ]
+		then
+		    if grep -x -F `echo "${NOM}" | rev | cut -d/ -f2- | rev` /tmp/cvsstat-$$-Dlist-new > /dev/null 2> /dev/null
+		    then
+			# HERE=`echo "${NOM}" | rev | cut -d/ -f2- | rev`
+			# echo "grep -x -F "${HERE}" /tmp/cvsstat-$$-Dlist-new"
+			# HERE=`grep -x -F "${HERE}" /tmp/cvsstat-$$-Dlist-new`
+			# echo  "file ${NOM} seems new in repository, but already mentioned in ${HERE}"
+			:
+		    else
+			echo "file ${1}/${NOM} seems new in repository, maybe you should try "'"'"cvs update ${1}/${NOM}"'" ?'
+		    fi
+		fi
+	    done
+	    rm /tmp/cvsstat-$$-Flist
+	else
+	    echo "check list file /tmp/cvsstat-$$-list wasn't created, could not check for new files."
+	fi
+    else
+	echo "there is no CVS/Repository file, so new files in repository won't be detected"
+    fi
+fi
+echo "done."
+
+# $Log: cvsstat.in,v $
+# Revision 1.2  2004/05/05 20:41:12  jd
+# cvs status now performed dir by dir instead of file by file (thanks tek)
+#
+# Revision 1.1  2004/04/21 22:27:32  jd
+# moving to 0.9.9 release
+#
+# Revision 1.2  2004/03/28 00:27:41  jd
+# updated help message
+#
+# Revision 1.1.1.1  2004/03/27 23:49:52  jd
+# imported sources
+#

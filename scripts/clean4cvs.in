@@ -1,0 +1,167 @@
+#!/bin/sh
+#
+# is supposed to clean-up the source dir from automake/conf stuffs 
+# before some cvs import
+#
+# est sensé faire le ménage en regard des fichiers créés par automake/conf
+# avant un import cvs
+#
+# $Id: clean4cvs.in,v 1.7 2004/05/06 19:24:51 tek Exp $
+#
+# Bozomake - (c) 2002-2003-2004 Jean-Daniel Pauget
+# Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
+
+if [ "${1}" = "--version" ]
+then
+    echo "Bozomake's clean4cvs version @VERSION@ - "'$Id: clean4cvs.in,v 1.7 2004/05/06 19:24:51 tek Exp $'
+    echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
+    echo
+    exit 0
+fi
+
+if [ -e Makefile ]
+then
+    echo 'cleaning with makefiles'
+    make clean
+    make distclean
+fi
+
+# list of file to be scanned in the root dir of the package and their known creators
+(   cat <<-end_of_root_removed_FILES
+		./COPYING		automake
+		./INSTALL	    	automake
+		./Makefile.in	    	automake
+		./aclocal.m4	    	aclocal
+		./config.h.in	    	autoheader
+		./configure		autoconf
+		./depcomp	    	automake
+		./install-sh	    	automake
+		./ltmain.sh	    	libtool
+		./missing		automake
+		./mkinstalldirs		automake
+		./config.guess		libtool
+		./config.sub		libtool
+		./stamp-h.in		automake
+		./tags			maketags
+		./TAGS			maketags
+		./BROWSE		maketags
+		./cross-config.cache	cross-configure
+		./config.cache		./configure
+		./config.log		./configure
+		./config.status		./configure
+		./libtool		./configure
+		./.vim.prepend		bozomake_configure
+		./.in			autoheader-2.59_______________questionnable_______
+end_of_root_removed_FILES
+) | while read FILE CREATOR
+do
+    if [ -e "${FILE}" ]
+    then
+	if rm "${FILE}" 
+	then
+	    echo "${CREATOR}'s ${FILE} removed"
+	else
+	    echo "could not remove ${CREATOR}'s ${FILE} ??"
+	fi
+    fi
+done
+		
+
+# list of file to be scanned in EVERY DIR of the package and their known creators
+(   cat <<-end_of_recursed_removed_FILES
+		stamp-h			configure
+		stamp-h1		configure
+		Makefile.in		automake
+		config.h.in		automake
+		stamp-h.in		automake
+		types.vim		maketags
+end_of_recursed_removed_FILES
+) | while read FILE CREATOR
+do
+    if [ "${FILE}" ]
+    then
+	find . -name "${FILE}" -print | while read FNAME
+	do
+	    if rm "${FNAME}"
+	    then
+		echo "${CREATOR}'s ${FNAME} removed"
+	    else
+		echo "could not remove ${CREATOR}'s ${FNAME} ??"
+	    fi
+	done
+    fi
+done
+
+
+# list of DIRECTORIES to be scanned in EVERY DIR of the package and their known creators
+(   cat <<-end_of_recursed_removed_DIRS
+		.deps			configure
+		.libs			libtool_make
+		autom4te.cache		aclocal
+end_of_recursed_removed_DIRS
+) | while read DIRNAME CREATOR
+do
+    if [ "${DIRNAME}" ]
+    then
+	find . -type d -name "${DIRNAME}" -print | while read DNAME
+	do
+	    if rm -rf "${DNAME}"
+	    then
+		echo "${CREATOR}'s ${DNAME} removed"
+	    else
+		echo "could not remove ${CREATOR}'s ${DNAME} ??"
+	    fi
+	done
+    fi
+done
+
+
+if [ -d src/Output ]
+then
+    echo
+    echo "W A R N I N G                                 W A R N I N G   !!!"
+    echo
+    echo "about to erase the win32 installer directory:"
+    find src/Output | sort
+    echo
+    echo "type CTRL-C if you wish to abort"
+    echo -n "9 secs... " && sleep 1
+    echo -n "8 secs... " && sleep 1
+    echo -n "7 secs... " && sleep 1
+    echo -n "6 secs... " && sleep 1
+    echo -n "5 secs... " && sleep 1
+    echo -n "4 secs... " && sleep 1
+    echo -n "3 secs... " && sleep 1
+    echo -n "2 secs... " && sleep 1
+    echo    "1 sec..."   && sleep 1
+    echo -n "erasing..."
+    rm -rf src/Output && echo "done." || echo "failed ?"
+fi
+
+echo " ${0} done."
+
+# $Log: clean4cvs.in,v $
+# Revision 1.7  2004/05/06 19:24:51  tek
+# added BROWSE scanning for maketags
+#
+# Revision 1.6  2004/05/03 23:06:50  jd
+# fine tuning in regard with autotool-1.8 targets
+#
+# Revision 1.5  2004/04/29 22:18:58  jd
+# *** empty log message ***
+#
+# Revision 1.4  2004/04/29 21:11:11  jd
+# humanized clean4cvs
+#
+# Revision 1.3  2004/04/29 15:09:55  jd
+# enabled support for etags and ctags
+#
+# Revision 1.2  2004/04/27 12:36:28  jd
+# a whole set of upgrades in regard with msys/mingw
+#
+# Revision 1.1  2004/04/21 22:27:31  jd
+# moving to 0.9.9 release
+#
+# Revision 1.1.1.1  2004/03/27 23:49:52  jd
+# imported sources
+#

@@ -1,0 +1,52 @@
+
+A whole set of small utilities around automake/conf and co. by
+Jean-Daniel Pauget.
+
+Most of them are still badly finished, with hardcoded path and
+other ugglynesses the same kind.
+
+
+configure:
+    tests if any "./configure" script lays in the current dir and try to
+    run it. If there is such script, try to use "autoall" (see below) for
+    creating one and running it.
+
+    "configure --version" cleverly dumps the version and revision of most tools
+    involved in the autobuild process, useful for bug tracking.
+    
+autoall:
+    runs one after the other the bestof gnu automake autoconf suite in
+    the proper order (or at least proper enough for the author's projects)
+
+clean4cvs:
+    tries to clean most files created by the previous scripts in order to
+    have a cleaned source tree ready for cvs comparisons, updates and check-ins.
+
+cvsstat:
+    recurse into current source tree and check via cvs for needed updates or local
+    changes. It should also detect missing files/directories.
+
+maketags:
+    recurses into current source tree and in a set of hardcoded headers' trees so
+    that a huge concatenation of "ctags" file is generated.
+
+vimall:
+    recurses into current source tree and launch a vi (vim) editing the whole set
+    of sources, sorted by most recent time-stamps. It uses the above "maketags"
+    for easying the navigation.
+    
+cptobackup:
+    creates a timestamped-named copy of the given file or directory. It echoes
+    the choosen command that was applied during the process for the user's
+    understanding. It should not overwrite any existing file, a rather add some
+    counting digits to the timestamped name.
+    For directories, ownership and permissions are kept by using the gnu extension
+    "cp -a" of the unix "cp" command.
+    For files, the backuped permissions (with time-stamps) should fall under the
+    "umask" and "cp" rules set when the operation is performed. If any doubt, double
+    check the result with "ls -l"...
+
+mvtobackup:
+    the same as the above "cptobackup" except that files or directories are moved
+    with the unix "mv" command instead of being copied.
+

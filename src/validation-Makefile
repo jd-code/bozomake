@@ -1,0 +1,17 @@
+
+vimtest: jdrev
+	echo 0 1 2 3 4 5 6 7 8 9 | ./jdrev
+	(	echo 12345678			; \
+		echo 1234			; \
+		echo 0 1 2 3 4 5 6 7 8 9	; \
+	) | ./jdrev
+	cat `find /usr/include -type f -name '*.h' -print ` | tr -c '[:print:]' '\n' > /tmp/1
+	./jdrev /tmp/1 | ./jdrev > /tmp/2
+	diff /tmp/1 /tmp/2
+	    rev /tmp/1 > /tmp/2
+	./jdrev /tmp/1 > /tmp/3
+	diff /tmp/2 /tmp/3
+	##./jdrev < jdrev.c
+
+jdrev: jdrev.c
+	gcc -g -Wall -o jdrev jdrev.c
