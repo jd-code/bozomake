@@ -13,7 +13,7 @@
 
 if [ "${1}" = "--version" ]
 then
-    echo "Bozomake's clean4cvs version @VERSION@ - "'$Id$'
+    echo "Bozomake's repozclean version @VERSION@ - "'$Id$'
     echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
     echo
     exit 0

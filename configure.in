@@ -106,7 +106,7 @@ AC_OUTPUT([
 	src/Makefile
 	scripts/Makefile
 	scripts/autoall
-	scripts/clean4cvs
+	scripts/repozclean
 	scripts/bozoconf
 	scripts/cptobackup
 	scripts/cvsstat
