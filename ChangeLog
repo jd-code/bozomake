@@ -1,0 +1,16 @@
+2004-05-04: jd         : cvs tag rev-0-9-13 .
+                         some more tunings in regard with new autotools
+                         better global consistency
+2004-04-29: jd         : handling etags added
+                         --track-changes added
+			 humanised clean4cvs
+2004-04-27: jd         : cvs tag rev-0-9-11 .
+                       : cvs tag rev-0-9-10 .
+                       : whole set of corrections with newer autotools
+                       : whole set of corrections in regard with msys/mingw
+                       : addition of rev, previous functionnality presence missing
+2004-04-22: jd         : cvs tag rev-0-9-9 .
+                       : moved to *.in precursor for all scripts
+2004-04-21: jd         : added --version flag in almost all scripts
+2004-03-28: jd         : cvs tag rev-0-9-8 .
+                       : the commands are packed together, bozomake's born

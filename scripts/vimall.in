@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# $Id: vimall.in,v 1.1 2004/04/21 22:27:32 jd Exp $
+#
+# Bozomake - (c) 2001-2002-2003-2004 Jean-Daniel Pauget
+
+if [ "${1}" = "--version" ]
+then
+    echo "Bozomake's vimall version @VERSION@ - "'$Id: vimall.in,v 1.1 2004/04/21 22:27:32 jd Exp $'
+    echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
+    echo
+    exit 0
+fi
+
+SHORTPATH=`pwd | rev | cut -d'/' -f1 | rev`
+/usr/local/bin/settitle "${SHORTPATH}"
+
+if [ "${1}" ]
+then
+    if [ "${1}" = "-v" ]
+    then
+	echo "Bozomake's vimall version @VERSION@ - "'$Id: vimall.in,v 1.1 2004/04/21 22:27:32 jd Exp $'
+	echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
+	exit 0
+    fi
+
+    if [ "${1}" = "-h" ]
+    then
+	echo 'vimall [-v] [-h] [-all] [-make]'
+	exit 0
+    fi
+
+    if [ "${1}" = "-all" ]
+    then
+	echo -n "vimall scanning..."
+	LISTE=`find . -type f -not -name ".*.swp" | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/'`
+	echo "done."
+    else
+	if [ "${1}" = "-make" ]
+	then
+	    echo -n "vimall scanning..."
+	    LISTE=`find . -type f -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am"`
+	echo "done."
+	else
+	    echo "vimall: unknown option ${1}"
+	    exit 1
+	fi
+    fi
+else
+    echo -n "vimall scanning..."
+    LISTE=`find . -type f -name "*.c" -o -name "*.h" -o -name "*.cpp"`
+    echo "done."
+fi
+
+SORTLIST=`ls -ct ${LISTE}`
+export SHELL=/usr/bin/tcsh
+
+VA_TYPESVIM="NON"
+if [ ! -f types.vim ]
+then
+    VA_TYPESVIM="OUI"
+    maketags
+fi
+
+if [ -e .vim.prepend ]
+then
+    vi -s .vim.prepend ${SORTLIST}
+else
+    vi ${SORTLIST}
+fi
+
+if [ "${VA_TYPESVIM}" = "OUI" ]
+then
+    rm -f types.vim tags
+fi
+
+# $Log: vimall.in,v $
+# Revision 1.1  2004/04/21 22:27:32  jd
+# moving to 0.9.9 release
+#
+# Revision 1.1.1.1  2004/03/27 23:49:52  jd
+# imported sources
+#
