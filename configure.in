@@ -115,31 +115,3 @@ AC_OUTPUT([
 	scripts/vimall
 ])
 
-dnl
-dnl $Log: configure.in,v $
-dnl Revision 1.7  2004/05/03 23:08:45  jd
-dnl *** empty log message ***
-dnl
-dnl Revision 1.6  2004/04/29 21:45:26  jd
-dnl *** empty log message ***
-dnl
-dnl Revision 1.5  2004/04/27 21:46:40  jd
-dnl *** empty log message ***
-dnl
-dnl Revision 1.4  2004/04/27 14:59:49  jd
-dnl tweaking for msys/mingw autoconf-2.56
-dnl
-dnl Revision 1.3  2004/04/27 12:36:28  jd
-dnl a whole set of upgrades in regard with msys/mingw
-dnl
-dnl Revision 1.2  2004/04/21 22:27:31  jd
-dnl moving to 0.9.9 release
-dnl
-dnl Revision 1.1.1.1  2004/03/27 23:49:52  jd
-dnl imported sources
-dnl
-dnl Revision 1.1.1.1  2004/02/28 15:28:24  jd
-dnl Imported sources
-dnl
-dnl
-dnl

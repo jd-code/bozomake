@@ -114,19 +114,3 @@ else
     fi
 fi
 
-# $Log: configure.in,v $
-# Revision 1.4  2004/05/03 23:07:36  jd
-# better error handling after execution of local ./configure
-#
-# Revision 1.3  2004/04/29 22:14:04  jd
-# tuned --track-changes cooperation
-#
-# Revision 1.2  2004/04/29 21:43:23  jd
-# added --track-changes option
-#
-# Revision 1.1  2004/04/21 22:27:31  jd
-# moving to 0.9.9 release
-#
-# Revision 1.1.1.1  2004/03/27 23:49:52  jd
-# imported sources
-#

@@ -130,16 +130,3 @@ else
 fi
 echo "done."
 
-# $Log: cvsstat.in,v $
-# Revision 1.2  2004/05/05 20:41:12  jd
-# cvs status now performed dir by dir instead of file by file (thanks tek)
-#
-# Revision 1.1  2004/04/21 22:27:32  jd
-# moving to 0.9.9 release
-#
-# Revision 1.2  2004/03/28 00:27:41  jd
-# updated help message
-#
-# Revision 1.1.1.1  2004/03/27 23:49:52  jd
-# imported sources
-#

@@ -45,13 +45,4 @@ bin_SCRIPTS =		\
     cvsstat		\
     vimall
 
-## 
-##  $Log: Makefile.am,v $
-##  Revision 1.1  2004/03/27 23:49:52  jd
-##  Initial revision
-##
-##  Revision 1.1.1.1  2004/02/28 15:28:24  jd
-##  Imported sources
-##
-##
 
