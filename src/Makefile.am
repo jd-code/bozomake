@@ -1,5 +1,5 @@
 ## 
-## $Id: Makefile.am,v 1.1 2004/04/27 12:36:28 jd Exp $
+## $Id$
 ## Bozomake Copyright (C) 2002,2003 Cristelle Barillon & Jean-Daniel Pauget
 ## A whole set of building utilities
 ##

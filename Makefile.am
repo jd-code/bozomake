@@ -1,5 +1,5 @@
 ## 
-## $Id: Makefile.am,v 1.2 2004/04/27 12:36:28 jd Exp $
+## $Id$
 ## Matcalc Copyright (C) 2002 Cristelle Barillon, Jean-Daniel PAUGET
 ## A small set graphical utilities for SDL
 ## 

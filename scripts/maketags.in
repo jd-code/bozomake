@@ -2,7 +2,7 @@
 #
 # scans some completely arbitrary list of files in order to build a global+local ctags file
 #
-# $Id: maketags.in,v 1.5 2004/05/07 17:27:26 tek Exp $
+# $Id$
 #
 # Bozomake - (c) 2002-2003-2004 Jean-Daniel Pauget
 # Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
@@ -13,7 +13,7 @@ LISTE_ADDON="/usr/local/include/matcalc /usr/local/include/grapefruit /usr/local
 
 if [ "${1}" = "--version" ]
 then
-    echo "Bozomake's maketags version @VERSION@ - "'$Id: maketags.in,v 1.5 2004/05/07 17:27:26 tek Exp $'
+    echo "Bozomake's maketags version @VERSION@ - "'$Id$'
     echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
     echo
     exit 0

@@ -2,14 +2,14 @@
 #
 # this one try to safely copy to backup the list of files
 #
-# $Id: cptobackup.in,v 1.1 2004/04/21 22:27:32 jd Exp $
+# $Id$
 #
 # Bozomake - (c) 1999-2002-2003-2004 Jean-Daniel Pauget
 # Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
 
 if [ "${1}" = "--version" ]
 then
-    echo "Bozomake's cptobackup version @VERSION@ - "'$Id: cptobackup.in,v 1.1 2004/04/21 22:27:32 jd Exp $'
+    echo "Bozomake's cptobackup version @VERSION@ - "'$Id$'
     echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
     echo
     exit 0
