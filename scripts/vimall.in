@@ -33,13 +33,15 @@ then
     if [ "${1}" = "-all" ]
     then
 	echo -n "vimall scanning..."
-	LISTE=`find . -type f -not -name ".*.swp" -not -path '*/.svn/*' | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/'`
+	SORTLIST=`find . -type f -not -name ".*.swp" -not -path '*/.svn/*' -printf "%A@:%p\n" | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/' | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
+	# LISTE=`find . -type f -not -name ".*.swp" -not -path '*/.svn/*' | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/'`
 	echo "done."
     else
 	if [ "${1}" = "-make" ]
 	then
 	    echo -n "vimall scanning..."
-	    LISTE=`find . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+	    SORTLIST=`find . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')' -printf "%A@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
+	    # LISTE=`find . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 	echo "done."
 	else
 	    echo "vimall: unknown option ${1}"
@@ -48,14 +50,15 @@ then
     fi
 else
     echo -n "vimall scanning..."
-    LISTE=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    SORTLIST=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')' -printf "%A@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
+    # LISTE=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
     echo "done."
 fi
 
 # this workaround for "command-line too long" symptom should rather use a combination of "find -print | sort" rather than ls
-LISTE=`echo "${LISTE}" | head -1000`
-
-SORTLIST=`ls -ct ${LISTE}`
+# LISTE=`echo "${LISTE}" | head -1000`
+# 
+# SORTLIST=`ls -ct ${LISTE}`
 export SHELL=/usr/bin/tcsh
 
 VA_TYPESVIM="NON"
