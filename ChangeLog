@@ -1,3 +1,8 @@
+2005-02-08: jd         : rev-1-1-1
+                         cleanup in regard with build out of directory
+			 badly named "clean4cvs" renamed in "repozclean"
+			 better handling of (truncated, though) long lists
+			 of sources (vimdiff and maketags)
 2005-01-07: jd         : rev-1-1-0
                          consistency cleanup in regard with cross-compilation
 			 badly named "configure" renamed in "bozoconf"
