@@ -18,7 +18,7 @@ then
     echo
     for TOBEDONE in		\
 	autoall			\
-	clean4cvs		\
+	repozclean		\
 	cptobackup		\
 	cvsstat			\
 	maketags		\
@@ -52,6 +52,41 @@ trackchange()
     fi
 }
 
+dotheconfiture()
+{
+    if [ "${OURBUILDDIR}" ]
+    then
+	cd "${OURBUILDDIR}" || exit 1
+	echo we are in `pwd`
+	OURCONFIGURE="${OURSOURCDIR}/configure"
+    else
+	OURCONFIGURE="./configure"
+    fi
+
+    echo "running ${OURCONFIGURE}"
+    if [ "${BOZOCONFCACHE}" ]
+    then
+	sh "${OURCONFIGURE}" --cache-file="${BOZOCONFCACHE}" "$@" && CONFOK=yes || CONFOK=NO
+	if ! [ ${OURBUILDDIR} ]
+	then
+	    rm -f "${BOZOCONFCACHE}"
+	fi
+    else
+	"${OURCONFIGURE}" "$@" && CONFOK=yes || CONFOK=NO
+    fi
+    trackchange
+    cd "${OURSOURCDIR}" || exit 1
+    echo we are in `pwd`
+    echo "running maketags"
+    maketags
+    trackchange
+    if [ "${CONFOK}" != "yes" ]
+    then
+	echo "there were errors at ${OURCONFIGURE} $@"
+	exit 1
+    fi
+}
+
 trackchange
 
 if [ ! "${BOZOCONFMAKE}" ]
@@ -74,23 +109,7 @@ if [ -e ./configure ]
 then
     if [ -x ./configure ]
     then
-	echo "running ./configure"
-	if [ "${BOZOCONFCACHE}" ]
-	then
-	    sh ./configure --cache-file="${BOZOCONFCACHE}" "$@" && CONFOK=yes || CONFOK=NO
-	    rm -f "${BOZOCONFCACHE}"
-	else
-	    ./configure "$@" && CONFOK=yes || CONFOK=NO
-	fi
-	trackchange
-	echo "running maketags"
-	maketags
-	trackchange
-	if [ "${CONFOK}" != "yes" ]
-	then
-	    echo "there were errors at ./configure $@"
-	    exit 1
-	fi
+	dotheconfiture "$@"
     else
 	echo "there is a './configure' file, but it doesn't have execution bits ?"
 	exit 1
@@ -104,25 +123,7 @@ else
 	then
 	    if [ -x ./configure ]
 	    then
-		echo
-		echo "running the './configure' created with autoall"
-		echo
-		if [ "${BOZOCONFCACHE}" ]
-		then
-		    sh ./configure --cache-file="${BOZOCONFCACHE}" "$@" && CONFOK=yes || CONFOK=NO
-		    rm -f "${BOZOCONFCACHE}"
-		else
-		    ./configure "$@" && CONFOK=yes || CONFOK=NO
-		fi
-		trackchange
-		echo "running maketags"
-		maketags
-		trackchange
-		if [ "${CONFOK}" != "yes" ]
-		then
-		    echo "there were errors at ./configure $@"
-		    exit 1
-		fi
+		dotheconfiture "$@"
 	    else
 		echo "after autoall, there is still no './configure' available ?"
 		exit 1
