@@ -52,6 +52,9 @@ else
     echo "done."
 fi
 
+# this workaround for "command-line too long" symptom should rather use a combination of "find -print | sort" rather than ls
+LISTE=`echo "${LISTE}" | head -1000`
+
 SORTLIST=`ls -ct ${LISTE}`
 export SHELL=/usr/bin/tcsh
 
