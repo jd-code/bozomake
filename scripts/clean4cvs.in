@@ -45,7 +45,6 @@ fi
 		./tags			maketags
 		./TAGS			maketags
 		./BROWSE		maketags
-		./config*.cache		bozoconf+./configure
 		./config.cache		./configure
 		./config.log		./configure
 		./config.status		./configure
