@@ -25,6 +25,18 @@ else
 	echo "cannot cd to ${1} ??? bailing out."
 	exit 1
     fi
+    if [ ! -d "${1}"/CVS ]
+    then
+	if [ -d "${1}/.svn" ]
+	then
+	    echo "there is a ${1}/.svn directory !"
+	    echo 'maybe you should use « svn stat "'"${1}"'" »'
+	    echo 'or even « svn stat -u "'"${1}"'" »'
+	else
+	    echo "directory ${1} has not been checked-out from cvs !! stopping..."
+	fi
+	exit 1
+    fi
 
     find ${1} -type d | grep -v CVS | while read NOMDIR
     do

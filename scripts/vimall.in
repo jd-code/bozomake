@@ -33,13 +33,13 @@ then
     if [ "${1}" = "-all" ]
     then
 	echo -n "vimall scanning..."
-	LISTE=`find . -type f -not -name ".*.swp" | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/'`
+	LISTE=`find . -type f -not -name ".*.swp" -not -path '*/.svn/*' | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/'`
 	echo "done."
     else
 	if [ "${1}" = "-make" ]
 	then
 	    echo -n "vimall scanning..."
-	    LISTE=`find . -type f -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am"`
+	    LISTE=`find . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 	echo "done."
 	else
 	    echo "vimall: unknown option ${1}"
@@ -48,7 +48,7 @@ then
     fi
 else
     echo -n "vimall scanning..."
-    LISTE=`find . -type f -name "*.c" -o -name "*.h" -o -name "*.cpp"`
+    LISTE=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
     echo "done."
 fi
 
