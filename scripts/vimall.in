@@ -44,8 +44,29 @@ then
 	    # LISTE=`find . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 	echo "done."
 	else
-	    echo "vimall: unknown option ${1}"
-	    exit 1
+	    if [ "{1}" = "-php" ]
+	    then
+		echo -n "vimall scanning..."
+		SORTLIST=`find . '('    -type f			    \
+					-name "*.c"		    \
+				     -o -name "*.h"		    \
+				     -o -name "*.cpp"		    \
+				     -o -name "*.c.in"		    \
+				     -o -name "*.h.in"		    \
+				     -o -name "*.cpp.in"	    \
+				     -o -name "*.html"		    \
+				     -o -name "*.shtml"		    \
+				     -o -name "*.php"		    \
+				  ')'				    \
+				  '(' -not -path '*/.svn/*'	    \
+				      -not -path '*/CVS/*'	    \
+				  ')' -printf "%T@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
+		# LISTE=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+		echo "done."
+	    else
+		echo "vimall: unknown option ${1}"
+		exit 1
+	    fi
 	fi
     fi
 else
