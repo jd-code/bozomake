@@ -7,12 +7,35 @@
 # Bozomake - (c) 1999-2002-2003-2004 Jean-Daniel Pauget
 # Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
 
+usage () {
+    echo "usage: $0 [--help] [--version] [--backdir] filnames ..."
+}
+
 if [ "${1}" = "--version" ]
 then
     echo "Bozomake's cptobackup version @VERSION@ - "'$Id$'
     echo "Bozomake @VERSION@ - (c) 2002-2003-2004 Jean-Daniel Pauget"
     echo
     exit 0
+fi
+
+if [ "${1}" = "--help" ]
+then
+    usage
+    exit 1
+fi
+
+if [ "${1}" = "--backdir" ]
+then
+    echo "creating ./.mvtobackup ..."
+    mkdir "./.mvtobackup" && echo "ok" || echo "failed"
+    if [ ! -d "./.mvtobackup" ]
+    then
+	echo "the directory ./.mvtobackup isn't here ??? bailing out !"
+	echo "NO BACKUP WHERE PERFORMED"
+	exit 1
+    fi
+    shift
 fi
 
 TSTAMP=`date +"%Y%m%d"`
@@ -25,18 +48,25 @@ construct_backupname() {
 	return 1
     fi
 
-    PROP="${NAME}-${TSTAMP}"
+    if [ -d "./.mvtobackup" ]
+    then
+	PREPROP="./.mvtobackup/"
+    else
+	PREPROP="./"
+    fi
+
+    PROP="${PREPROP}${NAME}-${TSTAMP}"
     if [ ! -e "${PROP}" ]
     then
 	echo "${PROP}"
 	return 0
     else
 	N=1
-	PROP="${NAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
+	PROP="${PREPROP}${NAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
 	while [ -e "${PROP}" -a "${N}" -lt 20 ]
 	do
 	   N=$[ ${N}+1 ]
-	    PROP="${NAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
+	    PROP="${PREPROP}${NAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
 	done
     fi
     if [ ! -e "${PROP}" ]
@@ -53,7 +83,7 @@ ERROR=NO
 
 if [ ! "${1}" ]
 then
-    echo "usage : ${0} ... list of files to COPY to stamped backup ..."
+    usage
     exit 1
 fi
 
