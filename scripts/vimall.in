@@ -54,9 +54,12 @@ then
 				     -o -name "*.c.in"		    \
 				     -o -name "*.h.in"		    \
 				     -o -name "*.cpp.in"	    \
+				     -o -name "*.css"		    \
 				     -o -name "*.html"		    \
 				     -o -name "*.shtml"		    \
 				     -o -name "*.php"		    \
+				     -o -name "*.ncss"		    \
+				     -o -name "*.nhtml"		    \
 				  ')'				    \
 				  '(' -not -path '*/.svn/*'	    \
 				      -not -path '*/CVS/*'	    \
