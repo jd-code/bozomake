@@ -48,25 +48,28 @@ construct_backupname() {
 	return 1
     fi
 
-    if [ -d "./.mvtobackup" ]
+    DIRNAME=`dirname "${1}"`
+    BASENAME=`basename "${1}"`
+
+    if [ -d "${DIRNAME}/.mvtobackup" ]
     then
-	PREPROP="./.mvtobackup/"
+	PREPROP="${DIRNAME}/.mvtobackup/"
     else
 	PREPROP="./"
     fi
 
-    PROP="${PREPROP}${NAME}-${TSTAMP}"
+    PROP="${PREPROP}${BASENAME}-${TSTAMP}"
     if [ ! -e "${PROP}" ]
     then
 	echo "${PROP}"
 	return 0
     else
 	N=1
-	PROP="${PREPROP}${NAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
+	PROP="${PREPROP}${BASENAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
 	while [ -e "${PROP}" -a "${N}" -lt 20 ]
 	do
 	   N=$[ ${N}+1 ]
-	    PROP="${PREPROP}${NAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
+	    PROP="${PREPROP}${BASENAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
 	done
     fi
     if [ ! -e "${PROP}" ]
