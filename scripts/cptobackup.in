@@ -55,7 +55,7 @@ construct_backupname() {
     then
 	PREPROP="${DIRNAME}/.mvtobackup/"
     else
-	PREPROP="./"
+	PREPROP="${DIRNAME}/"
     fi
 
     PROP="${PREPROP}${BASENAME}-${TSTAMP}"
