@@ -31,6 +31,9 @@ SUBDIRS = scripts src
 
 vimtest: all
 	echo 9 8 7 6 5 4 3 2 1 | ./src/rev
+	cat ./src/revtail.c | ./src/revtail > /tmp/1
+	./src/revtail ./src/revtail.c > /tmp/2
+	diff /tmp/1 /tmp/2
 	## ./src/Caroube
 	## startx -display :1 -e ./src/Caroube -- :1 -depth 16 -ac
 
