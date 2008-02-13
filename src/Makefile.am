@@ -24,9 +24,11 @@
 ## you can also try the web at http://www.gnu.org/
 ## 
 
-bin_PROGRAMS = rev
+bin_PROGRAMS = rev revtail
 
 
 rev_SOURCES = rev.c
+
+revtail_SOURCES = revtail.c
 
 

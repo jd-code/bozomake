@@ -93,7 +93,7 @@ fi
 # LISTE=`echo "${LISTE}" | head -1000`
 # 
 # SORTLIST=`ls -ct ${LISTE}`
-export SHELL=/usr/bin/tcsh
+export SHELL=` grep '^'"${USERNAME}:" /etc/passwd | cut -d: -f7 `
 
 VA_TYPESVIM="NON"
 if [ ! -f types.vim ]
