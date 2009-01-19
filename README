@@ -50,3 +50,13 @@ mvtobackup:
     the same as the above "cptobackup" except that files or directories are moved
     with the unix "mv" command instead of being copied.
 
+for first time installation without ./configure, here's a rought canvas :
+	libtoolize --force --copy
+	aclocal
+	autoheader
+	automake   --add-missing
+	autoconf
+	./configure
+	make
+	make install
+
