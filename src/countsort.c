@@ -6,8 +6,8 @@ int main (int nb, char ** argv)
 {
 	long count = 0, order = 0;
 	int ordered = 0;
-	char buf1 [128],
-	     buf2 [128],
+	char buf1 [4096],
+	     buf2 [4096],
 	     *p, *q, *r;
 	p = buf1, q = buf2;
 	*p = 0;
@@ -24,7 +24,7 @@ int main (int nb, char ** argv)
 		}
 	}
 
-	while (fgets (q, 128, stdin) != NULL)
+	while (fgets (q, 4096, stdin) != NULL)
 	{	if (strcmp (q,p) != 0)
 		{	
 			if (count) 
