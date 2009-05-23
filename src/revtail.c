@@ -243,7 +243,7 @@ int main (int nb, char ** cmde) {
 	buftailrev (0);
     }
 
-    fprintf (stderr, "malloc = %d, free = %d\n", nmalloc, nfree);
+//    fprintf (stderr, "malloc = %d, free = %d\n", nmalloc, nfree);
 
     return 0;
 }
