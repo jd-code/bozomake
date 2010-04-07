@@ -48,7 +48,7 @@ then
 
     echo -n " extracting types..."
     (
-	(	cat tags | rev | cut -f1 | rev | grep class | rev | cut -d':' -f1 | rev | sort -u ) 2> /dev/null
+	(	cat tags | brev | cut -f1 | brev | grep class | brev | cut -d':' -f1 | brev | sort -u ) 2> /dev/null
 	cut -f1,3 tags | grep class | cut -f1 | sort -u
 	cut -f1,3 tags | grep namespace | cut -f1 | sort -u
 	grep typedef tags | cut -f 1

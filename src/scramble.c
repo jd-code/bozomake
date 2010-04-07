@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define MABIGLINE 4096
-#define MAXNB 1024
+#define MAXNB 4096
 
 char *lig[MAXNB];
 int o[MAXNB];

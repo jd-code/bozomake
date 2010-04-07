@@ -27,10 +27,10 @@
 ## probably redundant with somewhere else
 ## CFLAGS = -O2 -Wall
 
-SUBDIRS = scripts src
+SUBDIRS = scripts src man
 
 vimtest: all
-	echo 9 8 7 6 5 4 3 2 1 | ./src/rev
+	echo 9 8 7 6 5 4 3 2 1 | ./src/brev
 	cat ./src/revtail.c | ./src/revtail > /tmp/1
 	./src/revtail ./src/revtail.c > /tmp/2
 	diff /tmp/1 /tmp/2
