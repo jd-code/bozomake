@@ -1,0 +1,58 @@
+.\"
+.\" $Id:$
+.\" bozomake Copyright (C) 2002 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" stuff for building and counting
+.\"
+.\" bozomake@disjunkt.com   http://bozomake.disjunkt.com/
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+.\"
+.\" you can also try the web at http://www.gnu.org/
+.\"
+.\"
+.TH "repozclean-@VERSION@" "1" "2002" "jd" "bozomake package"
+.LO 1
+.SH NAME
+repozclean \- cleans as much as possible a source tree from build targets and auto-generated files
+.br
+.SH SYNOPSIS
+.B
+repozclean
+.RI "[--version]"
+.SH DESCRIPTION
+.B repozclean
+intends to perform all needed operations to clean a build source tree before checking
+against repository.
+
+Operations usually are make clean, distclean, and then removing generated targets from
+.IR ".am" " or " ".in" " files."
+.SH OPTIONS
+.SS 
+.RI "--version"
+reports
+.B repozclean
+version.
+.SH FILES
+none.
+.SH SEE ALSO
+.RB "(1)" "bozoconf" ", (1)" "autoall"
+.SH BUGS
+There are probably plenty. Please report them to
+.B bozomake@univ-lyon1.fr
+.SH AUTHOR
+Jean-Daniel Pauget (bozomake@disjunkt.com)
+.SH MANPAGE VERSION
+$Id:$
+

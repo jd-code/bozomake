@@ -24,10 +24,10 @@
 ## you can also try the web at http://www.gnu.org/
 ## 
 
-bin_PROGRAMS = rev revtail countsort scramble percent
+bin_PROGRAMS = brev revtail countsort scramble percent
 
 
-rev_SOURCES = rev.c
+brev_SOURCES = brev.c
 
 revtail_SOURCES = revtail.c
 

@@ -1,7 +1,7 @@
 /*
  *  $Id$
  * 
- *  rev perfoms a left to righ conversion of a text file.
+ *  brev perfoms a left to righ conversion of a text file.
  *  it is intended to supply the 'rev' functionnality when it is missing,
  *  though it doesn't support multi-bytes chars nor locales, and probably more.
  *
@@ -39,7 +39,7 @@ void flushit (FlushBuf * fb)
 	flushit (previous);
 }
 
-void rev (FILE * f,FlushBuf * previous)
+void brev (FILE * f,FlushBuf * previous)
 {
     FlushBuf * cur;
     char *buf, *p;
@@ -47,7 +47,7 @@ void rev (FILE * f,FlushBuf * previous)
 
     cur = (FlushBuf *) malloc (sizeof (FlushBuf));
     if (cur == NULL) {
-	fprintf (stderr, "rev: ERROR: could not allocate 1024 bytes\n");
+	fprintf (stderr, "brev: ERROR: could not allocate 1024 bytes\n");
 	return;
     }
 
@@ -63,7 +63,7 @@ void rev (FILE * f,FlushBuf * previous)
 	    cur->first=j;
 	    cur->last=i-1;
 	    cur->previous = previous;
-	    rev (f, cur);
+	    brev (f, cur);
 	} else {
 	    int k;
     // JDJDJDJD the following is uggly, a left to right conversion
@@ -79,7 +79,7 @@ void rev (FILE * f,FlushBuf * previous)
 	    i++, p++;
 	    if (i == nbread) {
 		free (cur);
-		rev (f, NULL);
+		brev (f, NULL);
 	    }
 	}
     }
@@ -90,11 +90,11 @@ int main (int nb, char ** cmde)
     int i;
 
     if (nb == 1)
-	rev (stdin, NULL);
+	brev (stdin, NULL);
     else for (i=1 ; i<nb ; i++) {
 	FILE *f = fopen (cmde[i], "r");
 	if (f != NULL) {
-	    rev (f, NULL);
+	    brev (f, NULL);
 	    fclose (f);
 	} else {
 	    fprintf (stderr, "could not open %s for reading\n", cmde[i]);

@@ -1,0 +1,67 @@
+.\"
+.\" $Id:$
+.\" bozomake Copyright (C) 2002 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" stuff for building and counting
+.\"
+.\" bozomake@disjunkt.com   http://bozomake.disjunkt.com/
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+.\"
+.\" you can also try the web at http://www.gnu.org/
+.\"
+.\"
+.TH "autoall-@VERSION@" "1" "2002" "jd" "bozomake package"
+.LO 1
+.SH NAME
+autoall \- performs all steps from a bare libtooled source tree, up to a ./configure-able tree ...
+.br
+.SH SYNOPSIS
+.B
+autoall
+.RI "[--track-changes[=" "filename" "] ]"
+.SH DESCRIPTION
+.B autoall
+intends to perform all needed operations from a bare libtoolized source tree, to
+a fully usable
+.BR ./configure.sh -able
+source tree.
+
+Operations are : libtoolize, aclocal, autoheader, automake, autoconf, in this order.
+.SH OPTIONS
+.SS 
+.RI "--track-changes[=" "filename" "]"
+Tries to log all change to 
+.I filename
+between every steps, in order to find which process performed some changes.
+.I filename
+defaults to 
+.RI /tmp/configure-track- PID
+.SS
+.RI "--version"
+reports
+.B autoall
+version, and also versions from all sub-called utilities
+.SH FILES
+none.
+.SH SEE ALSO
+.RB "(1)" "bozoconf" ", (1)" "repozclean"
+.SH BUGS
+There are probably plenty. Please report them to
+.B bozomake@disjunkt.com
+.SH AUTHOR
+Jean-Daniel Pauget (bozomake@disjunkt.com)
+.SH MANPAGE VERSION
+$Id:$
+

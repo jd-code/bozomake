@@ -12,7 +12,7 @@ then
     exit 0
 fi
 
-SHORTPATH=`pwd | rev | cut -d'/' -f1 | rev`
+SHORTPATH=`pwd | brev | cut -d'/' -f1 | brev`
 /usr/local/bin/settitle "${SHORTPATH}"
 
 if [ "${1}" ]

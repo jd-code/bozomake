@@ -92,10 +92,10 @@ fi
 
 for NAME in ${*}
 do
-    LASTCHAR=`echo "${NAME}" | rev | cut -b1`
+    LASTCHAR=`echo "${NAME}" | brev | cut -b1`
     if [ "${LASTCHAR}" = "/" ]
     then
-	NAME=`echo "${NAME}" | rev | cut -b2- | rev`
+	NAME=`echo "${NAME}" | brev | cut -b2- | brev`
     fi
 
     if [ -e "${NAME}" ]

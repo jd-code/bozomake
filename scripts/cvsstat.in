@@ -52,7 +52,7 @@ else
 		while read LIGNE
 		do
 		    echo "${NOMDIR}/${LIGNE}"
-		done | rev | sort | rev
+		done | brev | sort | brev
 	    fi
 	fi
     done
@@ -120,9 +120,9 @@ else
 	    do
 		if [ ! -f "${1}/${NOM}" ]
 		then
-		    if grep -x -F `echo "${NOM}" | rev | cut -d/ -f2- | rev` /tmp/cvsstat-$$-Dlist-new > /dev/null 2> /dev/null
+		    if grep -x -F `echo "${NOM}" | brev | cut -d/ -f2- | brev` /tmp/cvsstat-$$-Dlist-new > /dev/null 2> /dev/null
 		    then
-			# HERE=`echo "${NOM}" | rev | cut -d/ -f2- | rev`
+			# HERE=`echo "${NOM}" | brev | cut -d/ -f2- | brev`
 			# echo "grep -x -F "${HERE}" /tmp/cvsstat-$$-Dlist-new"
 			# HERE=`grep -x -F "${HERE}" /tmp/cvsstat-$$-Dlist-new`
 			# echo  "file ${NOM} seems new in repository, but already mentioned in ${HERE}"
