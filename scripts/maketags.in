@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # scans some completely arbitrary list of files in order to build a global+local ctags file
 #

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # est sensé lancer un "./configure" en bonne et due forme si disponible,
 # sinon, essaie d'utiliser "autoall" pour en générer un avant de le lancer

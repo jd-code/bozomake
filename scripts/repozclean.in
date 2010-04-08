@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # is supposed to clean-up the source dir from automake/conf stuffs 
 # before some cvs or subversion import
