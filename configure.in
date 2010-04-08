@@ -115,11 +115,16 @@ AC_OUTPUT([
 	scripts/vimall
 	man/Makefile
 	man/autoall.1
-	man/repozclean.1
 	man/bozoconf.1
+	man/brev.1
+	man/count.1
+	man/countsort.1
+	man/cptobackup.1
 	man/cvsstat.1
 	man/maketags.1
-	man/cptobackup.1
 	man/mvtobackup.1
+	man/percent.1
+	man/repozclean.1
+	man/scramble.1
+	man/vimall.1
 ])
-

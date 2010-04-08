@@ -12,11 +12,11 @@ int compare_entry (const void *a, const void *b)
 {	return (*(struct entry * const *)b)->num - (*(struct entry * const *)a)->num;
 }
 
-int main (void)
+int main (int nb, char ** cmde)
 {
-	char buf [1024];
+	char buf [4096];
 	
-	int order = 1; /* il faut rajouter la desactivation de ce truc dans la ligne de commande */
+	int order = 1;
 
 	struct entry 	*first, 
 			*current,
@@ -27,7 +27,19 @@ int main (void)
 		n = 0,
 		i;
 
-	while (fgets (buf, 1024, stdin) != NULL)
+	for (i=1 ; i<nb ; i++) {
+	    if (cmde[i][0] == '-') {
+		switch (cmde[i][1]) {
+		    case 'r':
+			order = 0;
+			break;
+		    default:
+			break;
+		}
+	    }
+	}
+
+	while (fgets (buf, 4096, stdin) != NULL)
 	{
 		if ( (*last = (struct entry *) malloc (sizeof (struct entry))) == NULL )
 		{	fprintf (stderr, "un malloc a retourne NULL : j'abrege ! \n");

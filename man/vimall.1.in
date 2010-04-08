@@ -1,0 +1,77 @@
+.\"
+.\" $Id:$
+.\" bozomake Copyright (C) 2002 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" stuff for building and counting
+.\"
+.\" bozomake@disjunkt.com   http://bozomake.disjunkt.com/
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+.\"
+.\" you can also try the web at http://www.gnu.org/
+.\"
+.\"
+.TH "vimall-@VERSION@" "1" "2002" "jd" "bozomake package"
+.LO 1
+.SH NAME
+vimall \- opens vim with a full set of buffers from a source tree
+.br
+.SH SYNOPSIS
+.B
+vimall
+[-v] [-h] [-php] [-all] [-make]
+.SH DESCRIPTION
+.B vimall
+scans all subtree from current working directory for sources and launches
+.B vim
+with a buffer for each.
+.B vimall
+is not suitable in some big source-trees such as X11 or linux kernel !
+.SH OPTIONS
+.SS 
+.B "-all"
+opens a buffer for almost all files, avoiding only repository-util files and folders.
+.SS
+.B "-make"
+open all files related to autoconf, automake, make.
+.SS
+.B "-h"
+outputs a short memo-help.
+.SS
+.BR -v " | " --version
+outputs 
+.BR vimall "'s"
+version.
+.SH FILES
+.SS
+.I ./.vim.prepend
+contains some vim directives that are prepended to regular vim conffile. inherited from 
+.RB "(1)" maketags " and (1)" autoall "."
+.SS
+.I ~/.vimall.rc
+contains some global vim directives that are prepended to regular vim conffile.
+.SS
+.I ./types.vim ./tags
+contains type definitions and tags built from
+.RB (1) maketags
+.SH SEE ALSO
+.RB "(1)" "maketags" ", (1)" "bozoconf" ", (1)" repozclean
+.SH BUGS
+There are probably plenty. Please report them to
+.B bozomake@disjunkt.com
+.SH AUTHOR
+Jean-Daniel Pauget (bozomake@disjunkt.com)
+.SH MANPAGE VERSION
+$Id:$
+
