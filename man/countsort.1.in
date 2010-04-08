@@ -1,5 +1,5 @@
 .\"
-.\" $Id:$
+.\" $Id$
 .\" bozomake Copyright (C) 2002 Jean-Daniel PAUGET,Cristelle BARILLON
 .\" countsort Copyright (C) 1993 Jean-Daniel PAUGET,Cristelle BARILLON
 .\" stuff for building and counting
@@ -69,5 +69,5 @@ There are probably plenty. Please report them to
 .SH AUTHOR
 Jean-Daniel Pauget (bozomake@disjunkt.com)
 .SH MANPAGE VERSION
-$Id:$
+$Id$
 
