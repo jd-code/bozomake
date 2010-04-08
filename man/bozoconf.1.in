@@ -1,0 +1,98 @@
+.\"
+.\" $Id:$
+.\" bozomake Copyright (C) 2002 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" stuff for building and counting
+.\"
+.\" bozomake@disjunkt.com   http://bozomake.disjunkt.com/
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+.\"
+.\" you can also try the web at http://www.gnu.org/
+.\"
+.\"
+.TH "bozoconf-@VERSION@" "1" "2002" "jd" "bozomake package"
+.LO 1
+.SH NAME
+bozoconf \- triggers some regular "./configure.sh" if available, if not it will try to build one via autoall(1) before launching it
+.br
+.SH SYNOPSIS
+.B
+bozoconf
+.RI "[ --track-changes ]"
+.SH DESCRIPTION
+.B bozoconf
+tries to find a 
+.I ./configure.sh
+script ; if it is missing,
+.B bozoconf
+attempts to build one via the
+.B autoall(1)
+utility.
+
+.B bozoconf
+may inherits several environment variables in order to efficiently build into alternates trees, cross-compile, or use alternative build environments.
+
+.SH OPTIONS
+.SS 
+.RI "--track-changes
+Tries to log all changes between every steps, in order to find which process performed them.
+Changes are output to defaults to 
+.RI /tmp/configure-track- PID .
+.SS
+.RI "--version"
+reports
+.B bozoconf
+version, and also versions from all sub-called utilities.
+.SH ENVIRONMENT VARIABLES
+.SS
+.BR $OURBUILDDIR " and " $OURSOURCDIR
+sets separate build-dir and source-dir, typically :
+
+.RI OURBUILDDIR= targetdir " OURSOURCDIR=`" pwd "` bozoconf"
+
+in the source dir does the trick ...
+.SS
+.B $BOZOCONFCACHE
+sets
+.I ./configure.sh
+--cache-file= option in order to speed configurations.
+.SS
+.B $BOZOCONFMAKE
+uses an altername
+.B make
+build utility, mainly relevant for cross compiling and such.
+.SS
+.B $BOZOCONFTARGET
+sets a default
+.B make
+target, usefull when called from a GUI.
+.SS
+.B $BOZOMAKEEXT
+obscure ... probably in order to get compile logs separated ?
+.SH FILES
+.B bozoconf
+builds a
+.I .vim.prepend
+file in order to map the F12 key to the proper build operation.
+.SH SEE ALSO
+.RB "(1)" "autoall" ", (1)" "repozclean"
+.SH BUGS
+There are probably plenty. Please report them to
+.B bozomake@disjunkt.com
+.SH AUTHOR
+Jean-Daniel Pauget (bozomake@disjunkt.com)
+.SH MANPAGE VERSION
+$Id:$
+
