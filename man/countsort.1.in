@@ -24,7 +24,6 @@
 .\"
 .\"
 .TH "countsort-@VERSION@" "1" "1993" "jd" "bozomake package"
-.LO 1
 .SH NAME
 countsort \- counts all subsequent identical lines from stdin
 .br

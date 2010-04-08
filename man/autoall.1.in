@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "autoall-@VERSION@" "1" "2002" "jd" "bozomake package"
-.LO 1
 .SH NAME
 autoall \- performs all steps from a bare libtooled source tree, up to a ./configure-able tree ...
 .br

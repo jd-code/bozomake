@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "brev-@VERSION@" "1" "2002" "jd" "bozomake package"
-.LO 1
 .SH NAME
 brev \- reverses each lines from right to left of files or stdin
 .br

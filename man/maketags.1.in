@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "maketags-@VERSION@" "1" "2002" "jd" "bozomake package"
-.LO 1
 .SH NAME
 maketags \- builds tags file for your prefered gui.
 .br

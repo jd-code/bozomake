@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "count-@VERSION@" "1" "2002" "jd" "bozomake package"
-.LO 1
 .SH NAME
 count \- numbers each line from stdin
 .br

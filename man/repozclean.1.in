@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "repozclean-@VERSION@" "1" "2002" "jd" "bozomake package"
-.LO 1
 .SH NAME
 repozclean \- cleans as much as possible a source tree from build targets and auto-generated files
 .br
