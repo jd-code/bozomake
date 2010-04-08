@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "scramble-@VERSION@" "1" "1993" "jd" "bozomake package"
-.LO 1
 .SH NAME
 scramble \- randomly scrambles the lines of a stdin text input
 .br

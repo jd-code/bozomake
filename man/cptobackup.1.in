@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "cptobackup-@VERSION@" "1" "2002" "jd" "bozomake package"
-.LO 1
 .SH NAME
 cptobackup \- creates a time-stamped copy of files, dirs ...
 

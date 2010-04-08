@@ -24,7 +24,6 @@
 .\"
 .\"
 .TH "percent-@VERSION@" "1" "1993" "jd" "bozomake package"
-.LO 1
 .SH NAME
 percent \- summarizes the most important occurences of a countsort output with percentages
 .br

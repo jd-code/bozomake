@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "vimall-@VERSION@" "1" "2002" "jd" "bozomake package"
-.LO 1
 .SH NAME
 vimall \- opens vim with a full set of buffers from a source tree
 .br

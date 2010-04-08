@@ -23,7 +23,6 @@
 .\"
 .\"
 .TH "bozoconf-@VERSION@" "1" "2002" "jd" "bozomake package"
-.LO 1
 .SH NAME
 bozoconf \- triggers some regular "./configure.sh" if available, if not it will try to build one via autoall(1) before launching it
 .br
