@@ -1,0 +1,63 @@
+.\"
+.\" $Id:$
+.\" bozomake Copyright (C) 2002 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" stuff for building and counting
+.\"
+.\" bozomake@disjunkt.com   http://bozomake.disjunkt.com/
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+.\"
+.\" you can also try the web at http://www.gnu.org/
+.\"
+.\"
+.TH "cvsstat-@VERSION@" "1" "2002" "jd" "bozomake package"
+.LO 1
+.SH NAME
+cvsstat \- collects and summarizes changes between a local CVS tree and a repository
+.br
+.SH SYNOPSIS
+.B
+cvsstat
+.IR dirname " [ --version ]"
+.SH DESCRIPTION
+.B cvsstat
+attempt to use local repository definitions stored locally to check the local
+tree against the repository tree and find out changes, and recently added files
+on both sides.
+.SH OPTIONS
+.SS 
+.SS
+.RI "--version"
+reports
+.B cvsstat
+version.
+.SH FILES
+Some temporary files are created in
+.IR /tmp ,
+errors may cause them to disturb further inquiries if they aren't deleted properly ...
+.SH SEE ALSO
+.RB "(1)" "autoall" ", (1)" "repozclean" ", (1)" bozoconf
+.SH BUGS
+.B
+cvsstat
+isn't regularly maintained anymore, since the author switched to svn. Though it might
+still be convenient to use when dealing with CVS trees.
+There are probably plenty bugs. Please report them to
+.B bozomake@disjunkt.com
+.SH AUTHOR
+Jean-Daniel Pauget (bozomake@disjunkt.com)
+.SH MANPAGE VERSION
+$Id:$
+
