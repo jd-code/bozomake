@@ -1,0 +1,73 @@
+.\"
+.\" $Id:$
+.\" bozomake Copyright (C) 2002 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" countsort Copyright (C) 1993 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" stuff for building and counting
+.\"
+.\" bozomake@disjunkt.com   http://bozomake.disjunkt.com/
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+.\"
+.\" you can also try the web at http://www.gnu.org/
+.\"
+.\"
+.TH "countsort-@VERSION@" "1" "1993" "jd" "bozomake package"
+.LO 1
+.SH NAME
+countsort \- counts all subsequent identical lines from stdin
+.br
+.SH SYNOPSIS
+.B
+countsort
+.RI "[ -n ]"
+.SH DESCRIPTION
+.B countsort
+reads each lines from
+.IR stdin .
+While subsequent lines are identical
+.B countsort
+increases an internal count,
+when a different line occurs, the previous last line is output prepended with the count of
+occurences. The process starts over with the new different line.
+A typical use is to count occurences from a sorted file.
+.SH OPTIONS
+.SS
+.B -n
+prepends each output line with it's own occurence order (1 for the first, 2 for the second ...)
+.SH FILES
+none.
+.SH EXAMPLE
+ > echo 'a.a.a.b.b.c.c.c.c' | tr '.' '\\n' | countsort
+      3 a
+      2 b
+      4 c
+ > echo 'a.a.a.b.b.c.c.c.c' | tr '.' '\\n' | countsort -n
+      0       3 a
+      1       2 b
+      2       4 c
+.SH SEE ALSO
+.RB "(1)" "percent" ","
+.RB "(1)" "count" ","
+.RB "(1)" "revtail" ","
+.RB "(1)" "brev" ","
+.RB "(1)" "scramble" "."
+.SH BUGS
+There are probably plenty. Please report them to
+.B bozomake@disjunkt.com
+.SH AUTHOR
+Jean-Daniel Pauget (bozomake@disjunkt.com)
+.SH MANPAGE VERSION
+$Id:$
+

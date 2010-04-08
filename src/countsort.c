@@ -44,7 +44,14 @@ int main (int nb, char ** argv)
 		else
 			count ++;
 	}
-	if (count) printf ("%7ld %s", count, p);
+	if (count) 
+	{	if (ordered)
+		{	printf ("%7ld %7ld %s", order, count, p);
+			order ++;
+		}
+		else
+			printf ("%7ld %s", count, p);
+	}
 
 	return 0;
 }

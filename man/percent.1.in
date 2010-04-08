@@ -1,0 +1,86 @@
+.\"
+.\" $Id:$
+.\" bozomake Copyright (C) 2002 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" countsort/percent Copyright (C) 1993 Jean-Daniel PAUGET,Cristelle BARILLON
+.\" stuff for building and counting
+.\"
+.\" bozomake@disjunkt.com   http://bozomake.disjunkt.com/
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+.\"
+.\" you can also try the web at http://www.gnu.org/
+.\"
+.\"
+.TH "percent-@VERSION@" "1" "1993" "jd" "bozomake package"
+.LO 1
+.SH NAME
+percent \- summarizes the most important occurences of a countsort output with percentages
+.br
+.SH SYNOPSIS
+.B
+percent
+.RI "[ -r ]"
+.SH DESCRIPTION
+.B percent
+reads each lines from
+.IR stdin ,
+which should supposely be formated like the output of
+.RB (1) countsort .
+.B percent
+summerizes all occurences and outputs a repartition of those whith
+percentages against the whole sum for each entry.
+
+The first line of the output diplays the total number of occurences and the
+total number of entries in parenthesis.
+
+The output might be sorted by decreasing occurences or the with initial
+order of input.
+
+.B percent
+is almost never used with something else than countsort.
+.SH OPTIONS
+.SS
+.B -r
+Do
+.B not
+sort by decreasing occurences, keep the initial input order.
+.SH FILES
+none.
+.SH EXAMPLE
+ > echo 'a.a.a.b.b.c.c.c.c' | tr '.' '\\n' | countsort | percent
+        100 %       9 TOTAL (3 items)
+      1  44 %       4 c
+      2  33 %       3 a
+      3  22 %       2 b
+
+ > echo 'a.a.a.b.b.c.c.c.c' | tr '.' '\\n' | countsort | percent -r
+        100 %       9 TOTAL (3 items)
+      1  33 %       3 a
+      2  22 %       2 b
+      3  44 %       4 c
+.SH SEE ALSO
+.RB "(1)" "countsort" ","
+.RB "(1)" "count" ","
+.RB "(1)" "revtail" ","
+.RB "(1)" "brev" ","
+.RB "(1)" "scramble" "."
+.SH BUGS
+There are probably plenty. Please report them to
+.B bozomake@disjunkt.com
+.SH AUTHOR
+Jean-Daniel Pauget (bozomake@disjunkt.com)
+.SH MANPAGE VERSION
+$Id:$
+
