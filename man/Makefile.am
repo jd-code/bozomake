@@ -36,16 +36,16 @@
 
 ## pkginclude_HEADERS =	include/matcalc/matcalc.h
 man_MANS =		\
-	autoall.1.in	\
-	bozoconf.1.in	\
-	brev.1.in	\
-	count.1.in	\
-	countsort.1.in	\
-	cptobackup.1.in	\
-	cvsstat.1.in	\
-	maketags.1.in	\
-	mvtobackup.1.in	\
-	percent.1.in	\
-	repozclean.1.in	\
-	scramble.1.in	\
-	vimall.1.in
+	autoall.1	\
+	bozoconf.1	\
+	brev.1		\
+	count.1		\
+	countsort.1	\
+	cptobackup.1	\
+	cvsstat.1	\
+	maketags.1	\
+	mvtobackup.1	\
+	percent.1	\
+	repozclean.1	\
+	scramble.1	\
+	vimall.1
