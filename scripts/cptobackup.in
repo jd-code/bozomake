@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # this one try to safely copy to backup the list of files
 #
@@ -66,7 +66,7 @@ construct_backupname() {
     else
 	N=1
 	PROP="${PREPROP}${BASENAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
-	while [ -e "${PROP}" -a "${N}" -lt 20 ]
+	while [ -e "${PROP}" -a "${N}" -lt 100 ]
 	do
 	   N=$[ ${N}+1 ]
 	    PROP="${PREPROP}${BASENAME}-${TSTAMP}-"`printf "%02d\n" ${N}`

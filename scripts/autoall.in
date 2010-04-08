@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # jd - 2002-07-02 - pour faire en une seule fois tout le topo de
 #		    automake/conf etc etc...

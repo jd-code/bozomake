@@ -119,5 +119,7 @@ AC_OUTPUT([
 	man/bozoconf.1
 	man/cvsstat.1
 	man/maketags.1
+	man/cptobackup.1
+	man/mvtobackup.1
 ])
 
