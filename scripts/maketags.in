@@ -7,7 +7,7 @@
 # Bozomake - (c) 2002-2003-2004 Jean-Daniel Pauget
 # Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
 
-LISTE_ADDON="/usr/include/matcalc /usr/include/grapefruit /usr/include/caroube"
+LISTE_ADDON="/usr/include/matcalc /usr/include/grapefruit /usr/include/caroube ${TAGS_LISTE_ADDON}"
 LISTE_ADDON="/usr/local/include/matcalc /usr/local/include/grapefruit /usr/local/include/caroube ${LISTE_ADDON}"
 
 
