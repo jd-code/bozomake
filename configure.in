@@ -118,5 +118,6 @@ AC_OUTPUT([
 	man/repozclean.1
 	man/bozoconf.1
 	man/cvsstat.1
+	man/maketags.1
 ])
 
