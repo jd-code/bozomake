@@ -1,11 +1,29 @@
 #!/bin/bash
 #
-# $Id$
-#
-# Bozomake - (c) 2001-2002-2003-2004 Jean-Daniel Pauget
-
 # shortcut for getting a clear list of modified, unexistent files in a
 # checked-out then modified cvs-tree
+#
+# $Id$
+# Bozomake Copyright (C) 2002,2003 Cristelle Barillon & Jean-Daniel Pauget
+#
+# bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
+# 
+# Bozomake is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# Bozomake is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with GenRythm; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# you can also try the web at http://www.gnu.org/
+# 
+# bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
 
 if [ "${1}" = "--version" ]
 then
