@@ -3,9 +3,26 @@
 # scans some completely arbitrary list of files in order to build a global+local ctags file
 #
 # $Id$
+# Bozomake Copyright (C) 2002,2003 Cristelle Barillon & Jean-Daniel Pauget
 #
-# Bozomake - (c) 2002-2003-2004 Jean-Daniel Pauget
-# Bozomake helps building, cross-buildings and so on on multiple hosts/targets...
+# bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
+# 
+# Bozomake is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# Bozomake is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with GenRythm; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# you can also try the web at http://www.gnu.org/
+# 
+# bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
 
 LISTE_ADDON="/usr/include/matcalc /usr/include/grapefruit /usr/include/caroube ${TAGS_LISTE_ADDON}"
 LISTE_ADDON="/usr/local/include/matcalc /usr/local/include/grapefruit /usr/local/include/caroube ${LISTE_ADDON}"
