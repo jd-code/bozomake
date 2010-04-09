@@ -28,7 +28,6 @@ fi
 
 # list of file to be scanned in the root dir of the package and their known creators
 (   cat <<-end_of_root_removed_FILES
-		./COPYING		automake
 		./INSTALL	    	automake
 		./Makefile.in	    	automake
 		./aclocal.m4	    	aclocal
