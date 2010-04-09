@@ -1,0 +1,31 @@
+Package: bozomake
+Version: 1.2.0
+Section: util
+Priority: optional
+Architecture: amd64
+Essential: no
+Depends: bash
+Pre-Depends: perl 
+Recommends:
+Suggests:
+Installed-Size: 1024
+Maintainer: Pauget Jean-Daniel <debmaint@disjunkt.com>
+Conflicts:
+Replaces:
+Provides: bozomake
+Description: a whole set of utilities from automatic backup
+ timestamping to scripts for autobuilding a libtooled source tree.
+ .
+ provides :
+   scramble, reads an amount of lines and output them in random order
+   autoall, goes from libtoolize through aclocal, autoheader, automake to autoconf
+   countsort, counts the number of identical subsequent lines in on stdin
+   percent, after a countsort, reorders the output and computes percents
+   cptobackup, copies a time-stamped backup of a file or folder
+   vimall, build tags, opens all sources in a tree into vim buffers
+   mvtobackup, moves to a time-samped file or folder
+   bozoconf, goes from a naked libtooled tree to a configured source tree
+   rev, reverses each input line the other way round
+   repozclean, performs a huge cleanup of a libtooled tree for repository checking
+   maketags, builds tags form a libtooled tree
+   revtail, outputs a file line by line starting from the last line
