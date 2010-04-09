@@ -127,4 +127,5 @@ AC_OUTPUT([
 	man/repozclean.1
 	man/scramble.1
 	man/vimall.1
+	man/revtail.1
 ])
