@@ -1,6 +1,6 @@
 /* 
  * $Id$
- * Bozomake Copyright (C) 2002,2003 Cristelle Barillon & Jean-Daniel Pauget
+ * Bozomake Copyright (C) 1997,2002,2003 Cristelle Barillon & Jean-Daniel Pauget
  * A whole set of building utilities
  *
  * bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/

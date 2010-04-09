@@ -1,13 +1,13 @@
 ## 
 ## $Id$
-## Matcalc Copyright (C) 2002 Cristelle Barillon, Jean-Daniel PAUGET
+## Bozomake Copyright (C) 2002 Cristelle Barillon, Jean-Daniel PAUGET
 ## A small set graphical utilities for SDL
 ## 
-## matcalc@disjunkt.com  -  http://matcalc.disjunkt.com/
+## bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
 ## 
-## This file is part of Matcalc.
+## This file is part of Bozomake.
 ## 
-## Matcalc is free software; you can redistribute it and/or modify
+## Bozomake is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 2 of the License, or
 ## (at your option) any later version.
@@ -22,7 +22,7 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ## you can also try the web at http://www.gnu.org/
 ## 
-## matcalc@disjunkt.com  -  http://matcalc.disjunkt.com/
+## bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
 
 ## probably redundant with somewhere else
 ## CFLAGS = -O2 -Wall
