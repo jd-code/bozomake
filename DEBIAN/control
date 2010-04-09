@@ -1,5 +1,6 @@
 Package: bozomake
 Version: 1.2.0
+Homepage: http://bozomake.disjunkt.com/
 Section: admin
 Priority: optional
 Architecture: amd64

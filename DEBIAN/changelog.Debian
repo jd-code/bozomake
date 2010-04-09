@@ -1,0 +1,7 @@
+bozomake (1.2.0-1) etch; urgency=low
+
+  * Initial packaging
+    - nothing special
+    - probably needs some testings
+
+ -- Jean-Daniel PAUGET <bozomake@disjunkt.com>  Fri, 09 Apr 2010 18:32:44 +0200
