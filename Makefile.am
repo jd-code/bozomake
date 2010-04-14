@@ -42,6 +42,22 @@ vimtestw32: all
 	## mv ./src/Caroube ./src/Caroube.exe
 
 
+install-deb: install-strip
+	echo ${prefix}
+	test -d ${prefix}/../DEBIAN || mkdir ${prefix}/../DEBIAN
+	cp DEBIAN/control ${prefix}/../DEBIAN
+	find ${mandir} -type f -regex '.*\.[0-9]' -exec gzip -f -9 '{}' \;
+	mkdir -p ${prefix}/share/doc/${PACKAGE}
+	gzip -f -9 -c ChangeLog > ${prefix}/share/doc/${PACKAGE}/changelog.gz
+	gzip -f -9 -c DEBIAN/changelog.Debian > ${prefix}/share/doc/${PACKAGE}/changelog.Debian.gz
+	cp DEBIAN/copyright ${prefix}/share/doc/${PACKAGE}
+	(export DEBNAME=`echo ${prefix} | rev | cut -d/ -f2 | rev` ; cd ${prefix}/../.. ; ls -ld $$DEBNAME ; fakeroot dpkg-deb --build $$DEBNAME ; lintian $$DEBNAME.deb)
+
+man-html: 
+	test -d html || mkdir html
+	for NOM in man/*.? ; do groff -man -Thtml $$NOM > html/`echo $$NOM | rev | cut -d/ -f1 | rev`.html ; done
+	(cd html && echo '<div><ul>' > index.html ; ls *.?.html | while read NOM ; do echo '<li><a href="./'$$NOM'">'`echo $$NOM | rev | cut -d. -f2- | rev`'</a></li>' >> index.html ; done ; echo '</ul></div>' >> index.html)
+
 ##  additional file(s) to be removed when making dist...
 ## DISTCLEANFILES = ./src/Caroube.exe ./src/stderr.txt ./src/stdout.txt
 
