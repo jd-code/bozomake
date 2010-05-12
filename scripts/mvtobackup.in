@@ -67,7 +67,19 @@ construct_backupname() {
     fi
 
     DIRNAME=`dirname "${1}"`
-    BASENAME=`basename "${1}"`
+    if basename "${1}" | grep -q '\.'
+    then
+	BASENAME=`basename "${1}" | brev | cut -d. -f2- | brev`
+	TERMNAME="."`basename "${1}" | brev | cut -d. -f1 | brev`
+	if [ "E${BASENAME}E" = "EE" ]
+	then
+	    BASENAME=`basename "${1}"`
+	    TERMNAME=""
+	fi
+    else
+	BASENAME=`basename "${1}"`
+	TERMNAME=""
+    fi
 
     if [ -d "${DIRNAME}/.mvtobackup" ]
     then
@@ -76,18 +88,18 @@ construct_backupname() {
 	PREPROP="${DIRNAME}/"
     fi
 
-    PROP="${PREPROP}${BASENAME}-${TSTAMP}"
+    PROP="${PREPROP}${BASENAME}-${TSTAMP}""${TERMNAME}"
     if [ ! -e "${PROP}" ]
     then
 	echo "${PROP}"
 	return 0
     else
 	N=1
-	PROP="${PREPROP}${BASENAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
+	PROP="${PREPROP}${BASENAME}-${TSTAMP}-"`printf "%02d\n" ${N}`"${TERMNAME}"
 	while [ -e "${PROP}" -a "${N}" -lt 100 ]
 	do
 	   N=$[ ${N}+1 ]
-	    PROP="${PREPROP}${BASENAME}-${TSTAMP}-"`printf "%02d\n" ${N}`
+	    PROP="${PREPROP}${BASENAME}-${TSTAMP}-"`printf "%02d\n" ${N}`"${TERMNAME}"
 	done
     fi
     if [ ! -e "${PROP}" ]
