@@ -5,7 +5,7 @@ Section: admin
 Priority: optional
 Architecture: amd64
 Depends: bash (>=3.1), libc6
-Pre-Depends:
+Pre-Depends: debconf
 Recommends:
 Suggests:
 Installed-Size: 1024
