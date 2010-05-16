@@ -6,15 +6,9 @@ Priority: optional
 Architecture: amd64
 Depends: bash (>=3.1), libc6
 Pre-Depends: debconf
-Recommends:
-Suggests:
 Installed-Size: 1024
 Maintainer: Pauget Jean-Daniel <debmaint@disjunkt.com>
-Conflicts:
-Replaces:
-Description: a whole set of utilities from automatic backup
- timestamping to scripts for autobuilding a libtooled source tree.
- .
+Description: various utils such as backup-timestamping or autobuild a libtooled tree.
  provides :
    scramble    reads an amount of lines and output them in random order
    autoall     goes from libtoolize through aclocal, autoheader, automake to
