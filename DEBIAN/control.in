@@ -3,12 +3,12 @@ Version: 1.2.0
 Homepage: http://bozomake.disjunkt.com/
 Section: admin
 Priority: optional
-Architecture: amd64
+Architecture: @AC_DEBARCHSUBST@
 Depends: bash (>=3.1), libc6
 Pre-Depends: debconf
 Installed-Size: 1024
 Maintainer: Pauget Jean-Daniel <debmaint@disjunkt.com>
-Description: various utils such as backup-timestamping or autobuild a libtooled tree.
+Description: various utils such as backup-timestamping or autobuild a libtooled tree
  provides :
    scramble    reads an amount of lines and output them in random order
    autoall     goes from libtoolize through aclocal, autoheader, automake to

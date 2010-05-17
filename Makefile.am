@@ -42,8 +42,8 @@ vimtestw32: all
 	## mv ./src/Caroube ./src/Caroube.exe
 
 debian:
-	@echo "all you need is to : bozoconf --prefix=$${HOME}/${PACKAGE}-${VERSION}_"`echo "${target_cpu}" | sed 's/x86_64/amd64/' `"/usr ; make install-deb"
-	bozoconf --prefix="$${HOME}/${PACKAGE}-${VERSION}_"`echo "${target_cpu}" | sed 's/x86_64/amd64/' `"/usr" ; make install-deb
+	## bozoconf --prefix="$${HOME}/${PACKAGE}-${VERSION}_"`echo "${target_cpu}" | sed 's/x86_64/amd64/' `"/usr" ; make install-deb
+	bozoconf --prefix="$${HOME}/${PACKAGE}-${VERSION}_"@AC_DEBARCHSUBST@"/usr" ; make install-deb
 
 install-deb: install-strip
 	echo ${prefix}

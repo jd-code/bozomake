@@ -100,11 +100,31 @@ if test "$try_build_for_win32" = yes; then
 fi
 
 
+dnl create deb-packages arch substitution
+AC_MSG_CHECKING([arch substitution for deb packages])
+AC_DEBARCHSUBST=`echo "$target" | cut -d- -f1`
+case $AC_DEBARCHSUBST in
+    x86_64)
+	AC_DEBARCHSUBST=amd64
+	;;
+    i686)
+	AC_DEBARCHSUBST=i386
+	;;
+    *)
+	:
+	;;
+esac
+AC_MSG_RESULT($AC_DEBARCHSUBST)
+
+AC_SUBST(AC_DEBARCHSUBST)
+
+
 # Finally create all the generated files
 AC_OUTPUT([
 	Makefile
 	src/Makefile
 	scripts/Makefile
+	DEBIAN/control
 	scripts/autoall
 	scripts/repozclean
 	scripts/bozoconf
