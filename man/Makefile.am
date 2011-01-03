@@ -48,4 +48,5 @@ man_MANS =		\
 	repozclean.1	\
 	scramble.1	\
 	revtail.1	\
-	vimall.1
+	vimall.1	\
+	settitle.1

@@ -61,18 +61,19 @@ man-html: man
 	for NOM in man/*.? ; do groff -man -Thtml $$NOM	|						\
 	sed 's_bozomake_<a href="bozomake.1.html">bozomake</a>_g' |					\
 	sed 's_bozoconf_<a href="bozoconf.1.html">bozoconf</a>_g' |					\
-	sed 's_brev_<a href="brev.1.html">brev</a>_g' |					\
-	sed 's_count_<a href="count.1.html">count</a>_g' |					\
+	sed 's_brev_<a href="brev.1.html">brev</a>_g' |							\
+	sed 's_count_<a href="count.1.html">count</a>_g' |						\
 	sed 's_countsort_<a href="countsort.1.html">countsort</a>_g' |					\
-	sed 's_cptobackup_<a href="cptobackup.1.html">cptobackup</a>_g' |					\
+	sed 's_cptobackup_<a href="cptobackup.1.html">cptobackup</a>_g' |				\
 	sed 's_cvsstat_<a href="cvsstat.1.html">cvsstat</a>_g' |					\
 	sed 's_maketags_<a href="maketags.1.html">maketags</a>_g' |					\
-	sed 's_mvtobackup_<a href="mvtobackup.1.html">mvtobackup</a>_g' |					\
+	sed 's_mvtobackup_<a href="mvtobackup.1.html">mvtobackup</a>_g' |				\
 	sed 's_percent_<a href="percent.1.html">percent</a>_g' |					\
-	sed 's_repozclean_<a href="repozclean.1.html">repozclean</a>_g' |					\
+	sed 's_repozclean_<a href="repozclean.1.html">repozclean</a>_g' |				\
 	sed 's_revtail_<a href="revtail.1.html">revtail</a>_g' |					\
 	sed 's_scramble_<a href="scramble.1.html">scramble</a>_g' |					\
-	sed 's_vimall_<a href="vimall.1.html">vimall</a>_g' |					\
+	sed 's_vimall_<a href="vimall.1.html">vimall</a>_g' |						\
+	sed 's_settitle_<a href="settitle.1.html">settitle</a>_g' |					\
 	cat > html/`echo $$NOM | rev | cut -d/ -f1 | rev`.html ; done
 	(cd man &&											\
 	echo '<div><ul>' ;										\

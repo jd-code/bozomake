@@ -42,7 +42,7 @@ dnl this is here for autoheader 2.56 on msys
 AM_CONFIG_HEADER(src/config.h)
 
 dnl Setup for automake
-AM_INIT_AUTOMAKE(bozomake, 1.2.0, bozomake@disjunkt.com)
+AM_INIT_AUTOMAKE(bozomake, 1.2.1, bozomake@disjunkt.com)
 
 # set the libtool so version numbers
 lt_major=1
@@ -133,6 +133,7 @@ AC_OUTPUT([
 	scripts/maketags
 	scripts/mvtobackup
 	scripts/vimall
+	scripts/settitle
 	man/Makefile
 	man/autoall.1
 	man/bozoconf.1
@@ -148,4 +149,5 @@ AC_OUTPUT([
 	man/scramble.1
 	man/vimall.1
 	man/revtail.1
+	man/settitle.1
 ])
