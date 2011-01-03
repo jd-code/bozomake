@@ -43,6 +43,7 @@ bin_SCRIPTS =		\
     mvtobackup		\
     cptobackup		\
     cvsstat		\
-    vimall
+    vimall		\
+    settitle
 
 
