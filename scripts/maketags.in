@@ -37,7 +37,12 @@ then
 fi
 
 echo -n "scanning..."
-LISTEDIR=""
+if [ -f .tagdirs ]
+then
+    LISTEDIR=`cat .tagdirs`
+else
+    LISTEDIR=""
+fi
 for DIR in ${LISTE_ADDON}
 do
     if [ -e "${DIR}" ]

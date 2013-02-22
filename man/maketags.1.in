@@ -47,6 +47,10 @@ depends on the environment variables described below :
 reports
 .B maketags
 version.
+.SH FILES
+.SS
+.BR .tagdirs
+contains a list of (possibly relatives) additionnal directories to scan
 .SH ENVIRONMENT VARIABLES
 .SS
 .BR $BUILD_CTAGS

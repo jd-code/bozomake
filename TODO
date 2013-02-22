@@ -1,0 +1,3 @@
+
+vimall
+    [to test]  maketags : scan additionnal trees declared locally (from makefile ? from dedicated .tagsources ???)
