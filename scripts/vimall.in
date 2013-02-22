@@ -33,6 +33,11 @@ fi
 SHORTPATH=`pwd | brev | cut -d'/' -f1 | brev`
 settitle "${SHORTPATH}"
 
+if [ ! "$MANWIDTH" ]
+then
+    export MANWIDTH=$(( `tput cols` / 2 ))
+fi
+
 if [ "${1}" ]
 then
     if [ "${1}" = "-v" ]
