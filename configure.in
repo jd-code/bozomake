@@ -42,6 +42,7 @@ dnl this is here for autoheader 2.56 on msys
 AM_CONFIG_HEADER(src/config.h)
 
 dnl Setup for automake
+dnl mettre pareil dans DEBIAN/control.in
 AM_INIT_AUTOMAKE(bozomake, 1.2.2, bozomake@disjunkt.com)
 
 # set the libtool so version numbers
