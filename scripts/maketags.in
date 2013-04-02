@@ -24,8 +24,9 @@
 # 
 # bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
 
-LISTE_ADDON="/usr/include/matcalc /usr/include/grapefruit /usr/include/caroube ${TAGS_LISTE_ADDON}"
-LISTE_ADDON="/usr/local/include/matcalc /usr/local/include/grapefruit /usr/local/include/caroube ${LISTE_ADDON}"
+### JDJDJDJD this should never had been here !
+### LISTE_ADDON="/usr/include/matcalc /usr/include/grapefruit /usr/include/caroube ${TAGS_LISTE_ADDON}"
+### LISTE_ADDON="/usr/local/include/matcalc /usr/local/include/grapefruit /usr/local/include/caroube ${LISTE_ADDON}"
 
 
 if [ "${1}" = "--version" ]
@@ -58,7 +59,7 @@ then
 	find .													    \
 		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')'   \
 		'(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'
-	find ${LISTEDIR} ~/bzoums/grapefruit/src ~/bzoums/grapefruit/src					    \
+	find ${LISTEDIR} \
 		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')'   \
 		'(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'
     ) |
@@ -66,7 +67,7 @@ then
 #    ctags --C-types=+p -L -
 
     # ctags --C-types=+p `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
-    # ctags --C-types=+p -a `find ${LISTEDIR} ~/bzoums/grapefruit/src ~/bzoums/grapefruit/src '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    # ctags --C-types=+p -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 
     echo -n " extracting types..."
     (
@@ -92,19 +93,19 @@ then
 	find .													    \
 		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')'   \
 		'(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'
-	find ${LISTEDIR} ~/bzoums/grapefruit/src ~/bzoums/grapefruit/src					    \
+	find ${LISTEDIR}
 		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')'   \
 		'(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'
     ) | etags --C-types=+p
     # etags --C-types=+p `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
-    # etags --C-types=+p -a `find ${LISTEDIR} ~/bzoums/grapefruit/src ~/bzoums/grapefruit/src '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    # etags --C-types=+p -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 fi
 
 if [ "${BUILD_EBROWSE}" ]
 then
     echo -n " ebrowse..."
     ebrowse `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
-    ebrowse -a `find ${LISTEDIR} ~/bzoums/grapefruit/src ~/bzoums/grapefruit/src '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    ebrowse -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 fi
 
 echo " done."
