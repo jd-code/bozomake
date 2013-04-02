@@ -50,7 +50,11 @@ version.
 .SH FILES
 .SS
 .BR .tagdirs
-contains a list of (possibly relatives) additionnal directories to scan
+contains a list of (possibly relatives) additionnal directories to scan.
+.SS
+.BR tags " and/or " TAGS
+.B maketags
+triggers the creation or overwrite of those files.
 .SH ENVIRONMENT VARIABLES
 .SS
 .BR $BUILD_CTAGS
@@ -65,10 +69,6 @@ for generating tag files.
 .SS
 .B $TAGS_LISTE_ADDON
 contains a list of folders to recursively add tags from.
-.SH FILES
-.B maketags
-triggers the build of 
-.IR tags " and/or " TAGS .
 .SH SEE ALSO
 .RB "(1)" "autoall" ", (1)" "repozclean" ", (1)" bozoconf ", (1)" ctags ", (1)" etags
 .SH BUGS
