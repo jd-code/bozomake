@@ -74,6 +74,9 @@ then
 					-name "*.c"		    \
 				     -o -name "*.h"		    \
 				     -o -name "*.cpp"		    \
+				     -o -name "*.hc"		    \
+				     -o -name "*.h2h"		    \
+				     -o -name "*.hcpp"		    \
 				     -o -name "*.c.in"		    \
 				     -o -name "*.h.in"		    \
 				     -o -name "*.cpp.in"	    \
@@ -101,6 +104,9 @@ else
 			    -name "*.c"		    \
 			 -o -name "*.h"		    \
 			 -o -name "*.cpp"	    \
+			 -o -name "*.hc"	    \
+			 -o -name "*.h2h"	    \
+			 -o -name "*.hcpp"	    \
 			 -o -name "*.c.in"	    \
 			 -o -name "*.h.in"	    \
 			 -o -name "*.cpp.in"	    \
