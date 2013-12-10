@@ -68,7 +68,7 @@ trackchange()
 trackchange
 
 for TOBEDONE in			    \
-    "${AC_LIBTOOLIZE} --force --copy"	    \
+    "${LIBTOOLIZE} --force --copy"	    \
     aclocal			    \
     autoheader	    		    \
     "automake   --add-missing"	    \
