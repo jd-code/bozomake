@@ -30,6 +30,8 @@ then
     exit 0
 fi
 
+GFIND='@AC_GFIND@'
+
 SHORTPATH=`pwd | brev | cut -d'/' -f1 | brev`
 settitle "${SHORTPATH}"
 
@@ -56,21 +58,21 @@ then
     if [ "${1}" = "-all" ]
     then
 	echo -n "vimall scanning..."
-	SORTLIST=`find . -type f -not -name ".*.swp" -not -path '*/.svn/*' -printf "%T@:%p\n" | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/' | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
-	# LISTE=`find . -type f -not -name ".*.swp" -not -path '*/.svn/*' | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/'`
+	SORTLIST=`"${GFIND}" . -type f -not -name ".*.swp" -not -path '*/.svn/*' -printf "%T@:%p\n" | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/' | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
+	# LISTE=`"${GFIND}" . -type f -not -name ".*.swp" -not -path '*/.svn/*' | grep -vw CVS | grep -v tags | grep -v TAGS | grep -v '/.deps/'`
 	echo "done."
     else
 	if [ "${1}" = "-make" ]
 	then
 	    echo -n "vimall scanning..."
-	    SORTLIST=`find . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')' -printf "%T@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
-	    # LISTE=`find . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+	    SORTLIST=`"${GFIND}" . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')' -printf "%T@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
+	    # LISTE=`"${GFIND}" . -type f '(' -name "Make*" -o -name "conf" -o -name "*.in" -o -name "*.am" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 	    echo "done."
 	else
 	    if [ "${1}" = "-php" ]
 	    then
 		echo -n "vimall scanning..."
-		SORTLIST=`find . '('    -type f			    \
+		SORTLIST=`"${GFIND}" . '('    -type f			    \
 					-name "*.c"		    \
 				     -o -name "*.h"		    \
 				     -o -name "*.cpp"		    \
@@ -90,7 +92,7 @@ then
 				  '(' -not -path '*/.svn/*'	    \
 				      -not -path '*/CVS/*'	    \
 				  ')' -printf "%T@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
-		# LISTE=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+		# LISTE=`"${GFIND}" . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 		echo "done."
 	    else
 		echo "vimall: unknown option ${1}"
@@ -100,7 +102,7 @@ then
     fi
 else
     echo -n "vimall scanning..."
-    SORTLIST=`find . '('    -type f		    \
+    SORTLIST=`"${GFIND}" . '('    -type f		    \
 			    -name "*.c"		    \
 			 -o -name "*.h"		    \
 			 -o -name "*.cpp"	    \
@@ -114,7 +116,7 @@ else
 		      '(' -not -path '*/.svn/*'	    \
 			  -not -path '*/CVS/*'	    \
 		      ')' -printf "%T@:%p\n" | sort -t ':' -n -r | head -1000 | cut -d: -f2-`
-    # LISTE=`find . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    # LISTE=`"${GFIND}" . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
     echo "done."
 fi
 
