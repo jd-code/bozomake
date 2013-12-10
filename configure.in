@@ -157,6 +157,25 @@ fi
 AC_SUBST(AC_OURCTAGS)
 
 
+dnl look for a libtoolize
+AC_MSG_CHECKING([for some libtoolize])
+if libtoolize --version | grep -i 'GNU.*libtool' > /dev/null
+then
+    AC_LIBTOOLIZE='libtoolize'
+    AC_MSG_RESULT($AC_LIBTOOLIZE)
+else
+    if glibtoolize --version | grep -i 'GNU.*libtool' > /dev/null
+    then
+	AC_LIBTOOLIZE='glibtoolize'
+	AC_MSG_RESULT($AC_LIBTOOLIZE)
+    else
+	AC_LIBTOOLIZE='libtoolize'
+	AC_MSG_RESULT(not sure so will try to use $AC_LIBTOOLIZE)
+    fi
+fi
+AC_SUBST(AC_LIBTOOLIZE)
+
+
 dnl create deb-packages arch substitution
 AC_MSG_CHECKING([arch substitution for deb packages])
 AC_DEBARCHSUBST=`echo "$target" | cut -d- -f1`

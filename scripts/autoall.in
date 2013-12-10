@@ -53,6 +53,8 @@ else
     fi
 fi
 
+LIBTOOLIZE='@AC_LIBTOOLIZE@'
+
 trackchange()
 {   
     if [ "${TRACKCHANGE}" = "yes" ]
@@ -66,7 +68,7 @@ trackchange()
 trackchange
 
 for TOBEDONE in			    \
-    "libtoolize --force --copy"	    \
+    "${AC_LIBTOOLIZE} --force --copy"	    \
     aclocal			    \
     autoheader	    		    \
     "automake   --add-missing"	    \
