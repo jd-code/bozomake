@@ -54,6 +54,7 @@ fi
 		./install-sh	    	automake
 		./ltmain.sh	    	libtool
 		./missing		automake
+		./compile		automake
 		./mkinstalldirs		automake
 		./config.guess		libtool
 		./config.sub		libtool

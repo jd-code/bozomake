@@ -51,11 +51,7 @@ mvtobackup:
     with the unix "mv" command instead of being copied.
 
 for first time installation without ./configure, here's a rought canvas :
-	(g)libtoolize --copy
-	aclocal
-	autoheader
-	automake   --add-missing
-	autoconf
+	(g)libtoolize --copy && aclocal && autoheader && automake   --add-missing && autoconf
 	./configure
 	make
 	make install
