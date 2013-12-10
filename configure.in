@@ -43,7 +43,7 @@ AM_CONFIG_HEADER(src/config.h)
 
 dnl Setup for automake
 dnl mettre pareil dans DEBIAN/control.in
-AM_INIT_AUTOMAKE(bozomake, 1.2.6, bozomake@disjunkt.com)
+AM_INIT_AUTOMAKE(bozomake, 1.2.8, bozomake@disjunkt.com)
 
 # set the libtool so version numbers
 lt_major=1

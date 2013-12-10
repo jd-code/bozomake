@@ -57,17 +57,17 @@ then
     echo -n " ctags..."
     (
 	find .													    \
-		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')'   \
+		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')'   \
 		'(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'
 	find ${LISTEDIR} \
-		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')'   \
+		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')'   \
 		'(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'
     ) |
-    ctags --extra=+q --C-types=+p -L -
+    ctags --langmap=C++:+.hcpp --extra=+q --C-types=+p -L -
 #    ctags --C-types=+p -L -
 
-    # ctags --C-types=+p `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
-    # ctags --C-types=+p -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    # ctags --C-types=+p `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    # ctags --C-types=+p -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 
     echo -n " extracting types..."
     (
@@ -91,21 +91,21 @@ then
     echo -n " etags..."
     (
 	find .													    \
-		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')'   \
+		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')'   \
 		'(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'
 	find ${LISTEDIR}
-		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')'   \
+		'(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')'   \
 		'(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'
-    ) | etags --C-types=+p
-    # etags --C-types=+p `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
-    # etags --C-types=+p -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    ) | etags --langmap=C++:+.hcpp --C-types=+p
+    # etags --C-types=+p `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    # etags --C-types=+p -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 fi
 
 if [ "${BUILD_EBROWSE}" ]
 then
     echo -n " ebrowse..."
-    ebrowse `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
-    ebrowse -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.cc" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    ebrowse `find . '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
+    ebrowse -a `find ${LISTEDIR} '(' -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.H" -o -name "*.C" -o -name "*.hcpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 fi
 
 echo " done."
