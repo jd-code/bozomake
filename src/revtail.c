@@ -37,6 +37,21 @@
 
 #define BSIZE 1024
 
+#ifdef USELSEEK64
+
+#define BIGOFF_T off64_t
+#define BIGLSEEK lseek64
+	/* JDJDJDJD one should check this one is bound to lseek64 ??? */
+#define BIGO_LARGEFILE O_LARGEFILE
+
+#else	/* ios misses lseek64 or equivalent ??? */
+
+#define BIGOFF_T off_t
+#define BIGLSEEK lseek
+#define BIGO_LARGEFILE 0
+
+#endif	/* USELSEEK64 */
+
 typedef struct STFlushLBuf {
     struct STFlushLBuf * next,
 		       * prev;
@@ -144,14 +159,14 @@ void tailrev (int fd) {
     int i;
     long long lignesflushed = 0;
     FlushLBuf *next = NULL;
-    off64_t o = lseek64 (fd, 0, SEEK_END);
-    if (o == (off64_t)-1) {
+    BIGOFF_T o = BIGLSEEK (fd, 0, SEEK_END);
+    if (o == (BIGOFF_T)-1) {
 	fprintf (stderr, "could not seek to end of file ??\n");
 	return;
     }
     while (o > 0) {
 	int l;
-	off64_t size_to_read;
+	BIGOFF_T size_to_read;
 
 	FlushLBuf *b = (FlushLBuf *) malloc (sizeof(FlushLBuf));
 	if (b == NULL) {
@@ -167,8 +182,8 @@ void tailrev (int fd) {
 	    size_to_read = BSIZE;
 	b->cur = size_to_read;
 
-	o = lseek64 (fd, -size_to_read, SEEK_CUR);
-	if (o == (off64_t)-1) {
+	o = BIGLSEEK (fd, -size_to_read, SEEK_CUR);
+	if (o == (BIGOFF_T)-1) {
 	    fprintf (stderr, "could not seek back %d bytes in file ??\n", (int)size_to_read);
 	    freeallbuf (b);
 	    return;
@@ -181,8 +196,8 @@ void tailrev (int fd) {
 	    return;
 	}
 
-	o = lseek64 (fd, -size_to_read, SEEK_CUR);
-	if (o == (off64_t)-1) {
+	o = BIGLSEEK (fd, -size_to_read, SEEK_CUR);
+	if (o == (BIGOFF_T)-1) {
 	    fprintf (stderr, "could not seek back %d bytes in file ??\n", (int)size_to_read);
 	    freeallbuf (b);
 	    return;
@@ -256,7 +271,7 @@ int main (int nb, char ** cmde) {
 	}
 
 	nbfiles ++;
-	int fd = open (cmde[i], O_LARGEFILE);
+	int fd = open (cmde[i], BIGO_LARGEFILE);
 	if (fd != -1) {
 	    tailrev (fd);
 	    close (fd);

@@ -39,11 +39,11 @@ AC_CANONICAL_TARGET
 dnl autoheader
 dnl JDJDJDJD though useless in this package,
 dnl this is here for autoheader 2.56 on msys
-AM_CONFIG_HEADER(src/config.h)
+AC_CONFIG_HEADER(src/config.h)
 
 dnl Setup for automake
 dnl mettre pareil dans DEBIAN/control.in
-AM_INIT_AUTOMAKE(bozomake, 1.2.8, bozomake@disjunkt.com)
+AM_INIT_AUTOMAKE(bozomake, 1.2.9, bozomake@disjunkt.com)
 
 # set the libtool so version numbers
 lt_major=1
@@ -100,6 +100,45 @@ if test "$try_build_for_win32" = yes; then
     AC_DEFINE(BUILD_FOR_WIN32, 1, we build for a win32 install paths flavour)
 fi
 
+dnl check wether gfind can be used rather than find (we need gnu find)
+AC_MSG_CHECKING([wether gfind is gnu find])
+if gfind --version | grep -i 'GNU.*findutil' > /dev/null
+then
+    AC_GFIND='gfind'
+else
+    AC_GFIND='find'
+fi
+AC_MSG_RESULT($AC_GFIND)
+
+AC_SUBST(AC_GFIND)
+
+dnl look for an exuberant ctags
+AC_MSG_CHECKING([for some exuberant ctags])
+AC_OURCTAGS=""
+echo "${PATH}" | tr ':' '\n' | while read DIR
+do
+    if test -x "${DIR}/ctags"
+    then
+	if "${DIR}/ctags" --version | grep -i 'Exuberant.*Ctags' > /dev/null
+	then
+	    AC_OURCTAGS="${DIR}/ctags"
+	    echo "${AC_OURCTAGS}" > ourctags
+	    break;
+	fi
+    fi
+done
+if test '-f' ourctags
+then
+    AC_OURCTAGS=`cat ourctags`
+    AC_MSG_RESULT($AC_OURCTAGS)
+    rm ourctags
+else
+    AC_OURCTAGS='ctags'
+    AC_MSG_RESULT(not sure so will try to use $AC_OURCTAGS)
+fi
+
+AC_SUBST(AC_OURCTAGS)
+
 
 dnl create deb-packages arch substitution
 AC_MSG_CHECKING([arch substitution for deb packages])
@@ -118,7 +157,6 @@ esac
 AC_MSG_RESULT($AC_DEBARCHSUBST)
 
 AC_SUBST(AC_DEBARCHSUBST)
-
 
 # Finally create all the generated files
 AC_OUTPUT([
