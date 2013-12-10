@@ -101,40 +101,57 @@ if test "$try_build_for_win32" = yes; then
 fi
 
 dnl check wether gfind can be used rather than find (we need gnu find)
-AC_MSG_CHECKING([wether gfind is gnu find])
-if gfind --version | grep -i 'GNU.*findutil' > /dev/null
+AC_ARG_ENABLE(not-look-for-gfind,
+[  --enable-not-look-for-gfind
+                          dont try to check for gnu find],
+    AC_GFIND='find', AC_GFIND='')
+
+if test '!' "${AC_GFIND}"
 then
-    AC_GFIND='gfind'
-else
-    AC_GFIND='find'
+    AC_MSG_CHECKING([wether gfind is gnu find])
+    if gfind --version | grep -i 'GNU.*findutil' > /dev/null
+    then
+	AC_GFIND='gfind'
+    else
+	AC_GFIND='find'
+    fi
+    AC_MSG_RESULT($AC_GFIND)
 fi
-AC_MSG_RESULT($AC_GFIND)
 
 AC_SUBST(AC_GFIND)
 
 dnl look for an exuberant ctags
-AC_MSG_CHECKING([for some exuberant ctags])
-AC_OURCTAGS=""
-echo "${PATH}" | tr ':' '\n' | while read DIR
-do
-    if test -x "${DIR}/ctags"
-    then
-	if "${DIR}/ctags" --version | grep -i 'Exuberant.*Ctags' > /dev/null
-	then
-	    AC_OURCTAGS="${DIR}/ctags"
-	    echo "${AC_OURCTAGS}" > ourctags
-	    break;
-	fi
-    fi
-done
-if test '-f' ourctags
+AC_ARG_ENABLE(not-look-for-ctags,
+[  --enable-not-look-for-ctags
+                          dont try to check for exhuberant ctags],
+    AC_OURCTAGS='ctags', AC_OURCTAGS='')
+
+
+if test '!' "${AC_OURCTAGS}"
 then
-    AC_OURCTAGS=`cat ourctags`
-    AC_MSG_RESULT($AC_OURCTAGS)
-    rm ourctags
-else
-    AC_OURCTAGS='ctags'
-    AC_MSG_RESULT(not sure so will try to use $AC_OURCTAGS)
+    AC_MSG_CHECKING([for some exuberant ctags])
+    AC_OURCTAGS=""
+    echo "${PATH}" | tr ':' '\n' | while read DIR
+    do
+	if test -x "${DIR}/ctags"
+	then
+	    if "${DIR}/ctags" --version | grep -i 'Exuberant.*Ctags' > /dev/null
+	    then
+		AC_OURCTAGS="${DIR}/ctags"
+		echo "${AC_OURCTAGS}" > ourctags
+		break;
+	    fi
+	fi
+    done
+    if test '-f' ourctags
+    then
+	AC_OURCTAGS=`cat ourctags`
+	AC_MSG_RESULT($AC_OURCTAGS)
+	rm ourctags
+    else
+	AC_OURCTAGS='ctags'
+	AC_MSG_RESULT(not sure so will try to use $AC_OURCTAGS)
+    fi
 fi
 
 AC_SUBST(AC_OURCTAGS)

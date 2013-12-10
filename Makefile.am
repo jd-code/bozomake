@@ -43,7 +43,7 @@ vimtestw32: all
 
 debian:
 	## bozoconf --prefix="$${HOME}/${PACKAGE}-${VERSION}_"`echo "${target_cpu}" | sed 's/x86_64/amd64/' `"/usr" ; make install-deb
-	bozoconf --prefix="$${HOME}/${PACKAGE}-${VERSION}_"@AC_DEBARCHSUBST@"/usr" ; make install-deb
+	bozoconf --enable-not-look-for-gfind --enable-not-look-for-ctags --prefix="$${HOME}/${PACKAGE}-${VERSION}_"@AC_DEBARCHSUBST@"/usr" ; make install-deb
 
 install-deb: install-strip
 	echo ${prefix}
