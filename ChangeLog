@@ -1,3 +1,11 @@
+2013-12-10: jd         : rev-1-2-9
+                         macosX macports support
+2013-10-20: jd         : rev-1-2-7
+                         hcpp compliance added
+                         .cc files are considered secondary and yet left over
+                         in maketags
+2010-04-09: jd         : rev-1-2-0
+                         debian packaging
 2005-02-08: jd         : rev-1-1-1
                          cleanup in regard with build out of directory
 			 badly named "clean4cvs" renamed in "repozclean"
