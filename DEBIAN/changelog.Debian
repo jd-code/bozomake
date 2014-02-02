@@ -1,4 +1,9 @@
-bozomake (1.2.9-0) etch; urgency=low
+bozomake (1.2.10-001) squeeze; urgency=low
+
+  * more debianisation for automated builds
+
+ -- Jean-Daniel PAUGET <bozomake@disjunkt.com>  Sun, 10 Dec 2013 10:42:00 +0200
+bozomake (1.2.9-0) squeeze; urgency=low
 
   * macosX macports support
 

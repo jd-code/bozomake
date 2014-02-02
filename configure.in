@@ -43,7 +43,9 @@ AC_CONFIG_HEADER(src/config.h)
 
 dnl Setup for automake
 dnl mettre pareil dans DEBIAN/control.in
-AM_INIT_AUTOMAKE(bozomake, 1.2.9, bozomake@disjunkt.com)
+AM_INIT_AUTOMAKE(bozomake, 1.2.10, bozomake@disjunkt.com)
+dnl debian package subrevision
+DEBSUBREVISION=001
 
 # set the libtool so version numbers
 lt_major=1
@@ -193,6 +195,11 @@ esac
 AC_MSG_RESULT($AC_DEBARCHSUBST)
 
 AC_SUBST(AC_DEBARCHSUBST)
+
+# version substitution for debian packaging
+AC_DEBVERSION=$VERSION-$DEBSUBREVISION
+AC_SUBST(AC_DEBVERSION)
+
 
 # Finally create all the generated files
 AC_OUTPUT([

@@ -41,9 +41,19 @@ vimtestw32: all
 	## rm -f ./src/Caroube.exe
 	## mv ./src/Caroube ./src/Caroube.exe
 
+
+## be careful with that directory: it is destroyed at cleaning !!!
+## it is needed only to build debian packages
+debianworkplace=/tmp/bozomake-build-$$USER
+
+.PHONY: debian-clean
+debian-clean:
+	[ "${debianworkplace}" ] && [ -d "${debianworkplace}" ] && rm -rf "${debianworkplace}"
+
 debian:
 	## bozoconf --prefix="$${HOME}/${PACKAGE}-${VERSION}_"`echo "${target_cpu}" | sed 's/x86_64/amd64/' `"/usr" ; make install-deb
-	bozoconf --enable-not-look-for-gfind --enable-not-look-for-ctags --prefix="$${HOME}/${PACKAGE}-${VERSION}_"@AC_DEBARCHSUBST@"/usr" ; make install-deb
+	if [ ! -d "${debianworkplace}" ] ; then mkdir -m755 -p "${debianworkplace}" ; fi
+	bozoconf --enable-not-look-for-gfind --enable-not-look-for-ctags --prefix="${debianworkplace}/${PACKAGE}-${AC_DEBVERSION}_"@AC_DEBARCHSUBST@"/usr" ; make install-deb
 
 install-deb: install-strip
 	echo ${prefix}
