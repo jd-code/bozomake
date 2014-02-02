@@ -1,3 +1,8 @@
+bozomake (1.2.10-002) squeeze; urgency=low
+
+  * suppression of obsolete ask for user's cleanup
+
+ -- Jean-Daniel PAUGET <bozomake@disjunkt.com>  Sun, 02 Feb 2014 22:49:00 +0200
 bozomake (1.2.10-001) squeeze; urgency=low
 
   * more debianisation for automated builds

@@ -1,6 +1,0 @@
-#!/bin/sh
-set -e
-. /usr/share/debconf/confmodule
-db_set bozomake/purgeoldscriptinhomedir true
-db_input high bozomake/purgeoldscriptinhomedir || true
-db_go || true

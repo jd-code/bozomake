@@ -62,7 +62,7 @@ debian:
 install-deb: install-strip
 	echo ${prefix}
 	test -d ${prefix}/../DEBIAN || mkdir ${prefix}/../DEBIAN
-	cp -a DEBIAN/control DEBIAN/config DEBIAN/templates DEBIAN/postinst DEBIAN/postrm ${prefix}/../DEBIAN
+	cp -a DEBIAN/control  ${prefix}/../DEBIAN
 	find ${mandir} -type f -regex '.*\.[0-9]' -exec gzip -f -9 '{}' \;
 	mkdir -p ${prefix}/share/doc/${PACKAGE}
 	gzip -f -9 -c ChangeLog > ${prefix}/share/doc/${PACKAGE}/changelog.gz

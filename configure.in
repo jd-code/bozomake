@@ -45,7 +45,7 @@ dnl Setup for automake
 dnl mettre pareil dans DEBIAN/control.in
 AM_INIT_AUTOMAKE(bozomake, 1.2.10, bozomake@disjunkt.com)
 dnl debian package subrevision
-DEBSUBREVISION=001
+DEBSUBREVISION=002
 
 # set the libtool so version numbers
 lt_major=1
