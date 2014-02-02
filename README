@@ -1,10 +1,7 @@
 
 A whole set of small utilities around automake/conf and co. by
 Jean-Daniel Pauget.
-
-Most of them are still badly finished, with hardcoded path and
-other ugglynesses the same kind.
-
+    complain for bugs at bozomake@disjunkt.com
 
 bozoconf:
     tests if any "./configure" script lays in the current dir and try to
