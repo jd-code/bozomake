@@ -6,6 +6,7 @@ Priority: optional
 Architecture: @AC_DEBARCHSUBST@
 Depends: bash (>=3.1), libc6
 Pre-Depends: debconf
+Suggests: libtool, autoconf, automake, exuberant-ctags
 Installed-Size: 1024
 Maintainer: Pauget Jean-Daniel <debmaint@disjunkt.com>
 Description: various utils such as backup-timestamping or autobuild a libtooled tree

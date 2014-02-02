@@ -48,7 +48,11 @@ debianworkplace=/tmp/bozomake-build-$$USER
 
 .PHONY: debian-clean
 debian-clean:
-	[ "${debianworkplace}" ] && [ -d "${debianworkplace}" ] && rm -rf "${debianworkplace}"
+	if [ "${debianworkplace}" ] ; then \
+	if [ -d "${debianworkplace}" ] ; then \
+	rm -rf "${debianworkplace}" ; \
+	fi \
+	fi
 
 debian:
 	## bozoconf --prefix="$${HOME}/${PACKAGE}-${VERSION}_"`echo "${target_cpu}" | sed 's/x86_64/amd64/' `"/usr" ; make install-deb
