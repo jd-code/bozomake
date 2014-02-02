@@ -57,7 +57,7 @@ debian-clean:
 debian:
 	## bozoconf --prefix="$${HOME}/${PACKAGE}-${VERSION}_"`echo "${target_cpu}" | sed 's/x86_64/amd64/' `"/usr" ; make install-deb
 	if [ ! -d "${debianworkplace}" ] ; then mkdir -m755 -p "${debianworkplace}" ; fi
-	bozoconf --enable-not-look-for-gfind --enable-not-look-for-ctags --prefix="${debianworkplace}/${PACKAGE}-${AC_DEBVERSION}_"@AC_DEBARCHSUBST@"/usr" ; make install-deb
+	bozoconf --enable-not-look-for-gfind --enable-not-look-for-ctags --prefix="${debianworkplace}/${PACKAGE}-${AC_DEBVERSION}_"@AC_DEBARCHSUBST@"-`lsb_release -c -s`/usr" ; make install-deb
 
 install-deb: install-strip
 	echo ${prefix}
