@@ -43,7 +43,7 @@ AC_CONFIG_HEADER(src/config.h)
 
 dnl Setup for automake
 dnl mettre pareil dans DEBIAN/control.in
-AM_INIT_AUTOMAKE(bozomake, 1.2.10, bozomake@disjunkt.com)
+AM_INIT_AUTOMAKE(bozomake, 1.2.11, bozomake@disjunkt.com)
 dnl debian package subrevision
 DEBSUBREVISION=002
 
