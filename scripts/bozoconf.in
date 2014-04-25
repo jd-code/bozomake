@@ -134,7 +134,7 @@ then
     fi
 else
     echo -n "could not find './configure' ..."
-    if [ -e ./configure.in ]
+    if [ \( -e ./configure.in \) -o \( -e ./configure.ac \) ]
     then
 	echo "...trying to build one with autoall :"
 	if autoall "${TRACKAUTOALL}"
