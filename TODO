@@ -1,3 +1,8 @@
 
 vimall
-    [to test]  maketags : scan additionnal trees declared locally (from makefile ? from dedicated .tagsources ???)
+    [done]  maketags : scan additionnal trees declared locally (from makefile ? from dedicated .tagsources ???)
+    maketags bug :  "./fileinspect.cpp" 55L, 1345C
+		    Error detected while processing /Users/jd/srcg/fitstest/types.vim:
+		    line    1:
+		    E475: Invalid argument: Function
+
