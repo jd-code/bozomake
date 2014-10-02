@@ -30,7 +30,12 @@ dnl
 dnl bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(scripts/cvsstat.in)
+
+dnl mettre pareil dans DEBIAN/control.in
+AC_INIT([bozomake], [1.12.12], [bozomake@disjunkt.com])
+AC_CONFIG_SRCDIR([scripts/cvsstat.in])
+dnl debian package subrevision
+DEBSUBREVISION=002
 
 dnl Detect the canonical host and target build environment
 AC_CANONICAL_HOST
@@ -42,10 +47,10 @@ dnl this is here for autoheader 2.56 on msys
 AC_CONFIG_HEADER(src/config.h)
 
 dnl Setup for automake
-dnl mettre pareil dans DEBIAN/control.in
-AM_INIT_AUTOMAKE(bozomake, 1.2.12, bozomake@disjunkt.com)
-dnl debian package subrevision
-DEBSUBREVISION=002
+AM_INIT_AUTOMAKE([foreign])
+
+dnl the magic of additionnal local m4 ?
+AC_CONFIG_MACRO_DIR([m4])
 
 # set the libtool so version numbers
 lt_major=1
@@ -177,22 +182,37 @@ else
 fi
 AC_SUBST(AC_LIBTOOLIZE)
 
+dnl check for dpkg-architecture
+AC_DEFUN([AC_PROG_DPKGARCHITECURE], [AC_CHECK_PROG(HASDPKGARCHITECURE,dpkg-architecture,yes)])
+AC_PROG_DPKGARCHITECURE
+
+if test x"${HASDPKGARCHITECURE}" == x"yes" ; then
 
 dnl create deb-packages arch substitution
-AC_MSG_CHECKING([arch substitution for deb packages])
-AC_DEBARCHSUBST=`echo "$target" | cut -d- -f1`
-case $AC_DEBARCHSUBST in
-    x86_64)
-	AC_DEBARCHSUBST=amd64
-	;;
-    i686)
-	AC_DEBARCHSUBST=i386
-	;;
-    *)
-	:
-	;;
-esac
-AC_MSG_RESULT($AC_DEBARCHSUBST)
+    AC_MSG_CHECKING([arch substitution for deb packages])
+    AC_DEBARCHSUBST=`dpkg-architecture -qDEB_BUILD_ARCH`
+dnl was:    AC_DEBARCHSUBST=`echo "$target" | cut -d- -f1`
+dnl was:    case $AC_DEBARCHSUBST in
+dnl was:        x86_64)
+dnl was:    	AC_DEBARCHSUBST=amd64
+dnl was:    	;;
+dnl was:        i686)
+dnl was:    	AC_DEBARCHSUBST=i386
+dnl was:    	;;
+dnl was:        *)
+dnl was:    	:
+dnl was:    	;;
+dnl was:    esac
+    if test "$AC_DEBARCHSUBST"
+    then
+	AC_MSG_RESULT($AC_DEBARCHSUBST)
+    else
+	AC_DEBARCHSUBST="UNKNOWN"
+	AC_MSG_RESULT($AC_DEBARCHSUBST)
+    fi
+else
+    AC_DEBARCHSUBST="UNKNOWN"
+fi
 
 AC_SUBST(AC_DEBARCHSUBST)
 

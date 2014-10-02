@@ -27,7 +27,12 @@
 ## probably redundant with somewhere else
 ## CFLAGS = -O2 -Wall
 
+ACLOCAL_AMFLAGS = -I m4
+
 SUBDIRS = scripts src man
+
+distclean-local:
+	rm -f m4/*.m4
 
 vimtest: all
 	echo 9 8 7 6 5 4 3 2 1 | ./src/brev
