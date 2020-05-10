@@ -68,10 +68,10 @@ install-deb: install-strip
 	echo ${prefix}
 	test -d ${prefix}/../DEBIAN || mkdir ${prefix}/../DEBIAN
 	cp -a DEBIAN/control  ${prefix}/../DEBIAN
-	find ${mandir} -type f -regex '.*\.[0-9]' -exec gzip -f -9 '{}' \;
+	find ${mandir} -type f -regex '.*\.[0-9]' -exec gzip -n -f -9 '{}' \;
 	mkdir -p ${prefix}/share/doc/${PACKAGE}
-	gzip -f -9 -c ChangeLog > ${prefix}/share/doc/${PACKAGE}/changelog.gz
-	gzip -f -9 -c DEBIAN/changelog.Debian > ${prefix}/share/doc/${PACKAGE}/changelog.Debian.gz
+	gzip -n -f -9 -c ChangeLog > ${prefix}/share/doc/${PACKAGE}/changelog.gz
+	gzip -n -f -9 -c DEBIAN/changelog.Debian > ${prefix}/share/doc/${PACKAGE}/changelog.Debian.gz
 	cp DEBIAN/copyright ${prefix}/share/doc/${PACKAGE}
 	(export DEBNAME=`echo ${prefix} | rev | cut -d/ -f2 | rev` ; cd ${prefix}/../.. ; ls -ld $$DEBNAME ; fakeroot dpkg-deb --build $$DEBNAME ; lintian $$DEBNAME.deb)
 
