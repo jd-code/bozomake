@@ -95,8 +95,14 @@ then
 		# LISTE=`"${GFIND}" . '(' -type f -name "*.c" -o -name "*.h" -o -name "*.cpp" ')' '(' -not -path '*/.svn/*' -not -path '*/CVS/*' ')'`
 		echo "done."
 	    else
-		echo "vimall: unknown option ${1}"
-		exit 1
+		if [ "${1}" = "-git" ]
+		then
+		    echo -n "vimall scanning (via git). .."
+		    SORTLIST=$( git ls-tree -r  $( git rev-parse --abbrev-ref HEAD ) --name-only )
+		else
+		    echo "vimall: unknown option ${1}"
+		    exit 1
+		fi
 	    fi
 	fi
     fi

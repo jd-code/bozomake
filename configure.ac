@@ -32,7 +32,7 @@ dnl bozomake@disjunkt.com  -  http://bozomake.disjunkt.com/
 dnl Process this file with autoconf to produce a configure script.
 
 dnl mettre pareil dans DEBIAN/control.in
-AC_INIT([bozomake], [1.12.12], [bozomake@disjunkt.com])
+AC_INIT([bozomake], [1.12.13], [bozomake@disjunkt.com])
 AC_CONFIG_SRCDIR([scripts/cvsstat.in])
 dnl debian package subrevision
 DEBSUBREVISION=002

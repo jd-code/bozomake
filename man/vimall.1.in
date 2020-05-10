@@ -29,7 +29,7 @@ vimall \- opens vim with a full set of buffers from a source tree
 .SH SYNOPSIS
 .B
 vimall
-[-v] [-h] [-php] [-all] [-make]
+[-v] [-h] [-php] [-git] [-all] [-make]
 .SH DESCRIPTION
 .B vimall
 scans all subtree from current working directory for sources and launches
@@ -38,6 +38,9 @@ with a buffer for each.
 .B vimall
 is not suitable in some big source-trees such as X11 or linux kernel !
 .SH OPTIONS
+.SS 
+.B "-git"
+opens a buffer for all git-tracked files of the local git-repository.
 .SS 
 .B "-all"
 opens a buffer for almost all files, avoiding only repository-util files and folders.
