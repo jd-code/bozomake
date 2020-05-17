@@ -71,7 +71,7 @@ for TOBEDONE in			    \
     "${LIBTOOLIZE} --force --copy"	    \
     aclocal			    \
     autoheader	    		    \
-    "automake   --add-missing"	    \
+    "automake   --add-missing --copy"	    \
     autoconf
 do
     if [ "${ASKFORVERSION}" = "YES" ]
